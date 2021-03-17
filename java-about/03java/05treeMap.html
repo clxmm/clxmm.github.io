@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>05 TreeMap | clxmm</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="clxmm">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.1712b6ed.js" as="script"><link rel="preload" href="/assets/js/2.ebd0d7f0.js" as="script"><link rel="preload" href="/assets/js/14.b6c9a82f.js" as="script"><link rel="prefetch" href="/assets/js/10.a9dd6683.js"><link rel="prefetch" href="/assets/js/11.b04e85b9.js"><link rel="prefetch" href="/assets/js/12.384cb7e1.js"><link rel="prefetch" href="/assets/js/13.d2118b2a.js"><link rel="prefetch" href="/assets/js/15.8e3f5ff7.js"><link rel="prefetch" href="/assets/js/16.be5e66cd.js"><link rel="prefetch" href="/assets/js/17.995d3d0f.js"><link rel="prefetch" href="/assets/js/18.485893d8.js"><link rel="prefetch" href="/assets/js/19.c2ea10b0.js"><link rel="prefetch" href="/assets/js/20.b703b831.js"><link rel="prefetch" href="/assets/js/21.3d219917.js"><link rel="prefetch" href="/assets/js/3.f9bd8d95.js"><link rel="prefetch" href="/assets/js/4.2979d6aa.js"><link rel="prefetch" href="/assets/js/5.0aadf1e8.js"><link rel="prefetch" href="/assets/js/6.78397fcc.js"><link rel="prefetch" href="/assets/js/7.6e7ce93d.js"><link rel="prefetch" href="/assets/js/8.cc8ac5af.js"><link rel="prefetch" href="/assets/js/9.15fe2da7.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">clxmm</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Java03</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java-about/03java/01synchronized.html" class="sidebar-link">05 并发编程中的synchronized  (1)</a></li><li><a href="/java-about/03java/02IO.html" class="sidebar-link">02 java 的io流</a></li><li><a href="/java-about/03java/03bio.html" class="sidebar-link">03 java bio</a></li><li><a href="/java-about/03java/04nio.html" class="sidebar-link">04 开始学习nio</a></li><li><a href="/java-about/03java/05treeMap.html" aria-current="page" class="active sidebar-link">05 TreeMap</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/03java/05treeMap.html#_1、treemap-的特点" class="sidebar-link">1、TreeMap 的特点</a></li><li class="sidebar-sub-header"><a href="/java-about/03java/05treeMap.html#_2、treemap-的数据结构" class="sidebar-link">2、TreeMap 的数据结构</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/03java/05treeMap.html#_2-1-二叉查找树" class="sidebar-link">2.1 二叉查找树</a></li><li class="sidebar-sub-header"><a href="/java-about/03java/05treeMap.html#_2-3-平衡二叉树" class="sidebar-link">2.3 平衡二叉树</a></li><li class="sidebar-sub-header"><a href="/java-about/03java/05treeMap.html#_2-4-红黑树" class="sidebar-link">2.4 红黑树</a></li><li class="sidebar-sub-header"><a href="/java-about/03java/05treeMap.html#treemap-java" class="sidebar-link">TreeMap.java</a></li></ul></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1、treemap-的特点"><a href="#_1、treemap-的特点" class="header-anchor">#</a> 1、TreeMap 的特点</h2> <ul><li>treemap 是一个双列集合，map的子类，底层有红黑树构成</li> <li>特点
+元素中的健不能重复
+元素会按照大小顺序排序</li></ul> <h2 id="_2、treemap-的数据结构"><a href="#_2、treemap-的数据结构" class="header-anchor">#</a> 2、TreeMap 的数据结构</h2> <h3 id="_2-1-二叉查找树"><a href="#_2-1-二叉查找树" class="header-anchor">#</a> 2.1 二叉查找树</h3> <p><strong>特点</strong></p> <ul><li>若左子树不为空，则左子树上的所有节点的值均小于它的根结点的值</li> <li>若右子树不为空，。右。。。。。。。。。。。大于。。。。。。。</li> <li>左右树也分别为二叉排序树</li> <li>没有相等的节点</li></ul> <p><strong>二叉查找树就是每个节点按照大小排列的二叉树，二叉查找树方便对节点的值进行查找</strong></p> <p><img src="/java/map01.png" alt="map01.png"></p> <p><strong>查找方式</strong>
+从根结点开始查找，如果等于则返回
+如果小于，则在左子书中递归查找
+如果大于，则在右子树中递归查找</p> <h3 id="_2-3-平衡二叉树"><a href="#_2-3-平衡二叉树" class="header-anchor">#</a> 2.3 平衡二叉树</h3> <p>1.定义：
+为了避免出现“瘸子的现象”，减少树的高度，提高搜索效率，出现了平衡二叉树：<strong>左右两个子树的高度差不超过1，并且左右两个树都是一颗平衡二叉树</strong></p> <p><img src="/java/map02.png" alt="map02.png"></p> <ol start="2"><li>平衡二叉树的选装</li></ol> <ul><li><p>左旋
+右支往左拉，右支节点变为父节点，并把晋升之后多余的左子节（s左）点让给降级节点（E）的右子节点
+<img src="/java/map03.png" alt="map03.png"></p></li> <li><p>右旋
+左支往右拉，左支节点变为父节点，并把晋升之后多余的右支节点(e右)让给降级节点的左子节点</p></li></ul> <p><img src="/java/map04.png" alt="map04.png"></p> <ul><li>四种左右失衡的情况
+<img src="/java/map06.png" alt="map06.png"> <img src="/java/map07.png" alt="map07.png"></li></ul> <h3 id="_2-4-红黑树"><a href="#_2-4-红黑树" class="header-anchor">#</a> 2.4 红黑树</h3> <ol><li>概述</li></ol> <ul><li>自平衡的二叉查找树</li> <li>每个节点都有存储为表示节点的颜色，可以是红或者黑</li> <li>红黑树不是高度平衡的，平衡是通过“红黑树的特性“进行实现的</li></ul> <ol start="2"><li>红黑树的特性</li></ol> <ul><li>每一个节点是红色或者黑色</li> <li>根结点必须是黑色</li> <li>每个叶节点是黑色（叶节点是nil）</li> <li>如果某一个节点是红色，那么它的子节点必须是黑色（不能出现两个红节点相连的情况）</li> <li>每一个节点，从该结点到其所有后代叶结点的简单路径上，均包含相同数目的黑色结点</li></ul> <p><img src="/java/map08.png" alt="map08.png"></p> <h3 id="treemap-java"><a href="#treemap-java" class="header-anchor">#</a> TreeMap.java</h3> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TreeMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span>
+    <span class="token keyword">extends</span> <span class="token class-name">AbstractMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span>
+    <span class="token keyword">implements</span> <span class="token class-name">NavigableMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">,</span> <span class="token class-name">Cloneable</span><span class="token punctuation">,</span> <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span>Serializable</span>
+<span class="token punctuation">{</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> <span class="token keyword">implements</span> <span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+            <span class="token class-name">K</span> key<span class="token punctuation">;</span>   <span class="token comment">// 键</span>
+            <span class="token class-name">V</span> value<span class="token punctuation">;</span>  <span class="token comment">//值</span>
+            <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> left<span class="token punctuation">;</span>  <span class="token comment">//左子结点的地址</span>
+            <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> right<span class="token punctuation">;</span>  <span class="token comment">// 右子结点的地址</span>
+            <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> parent<span class="token punctuation">;</span>  <span class="token comment">// 父结点的地址</span>
+            <span class="token keyword">boolean</span> color <span class="token operator">=</span> BLACK<span class="token punctuation">;</span> <span class="token comment">// 结点的颜色</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// get 方法</span>
+    <span class="token keyword">public</span> <span class="token class-name">V</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">Object</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 根据键获取entry的值</span>
+        <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> p <span class="token operator">=</span> <span class="token function">getEntry</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 判断对象，如果是null 返回null，不是，返回对象中的值</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>p<span class="token operator">==</span><span class="token keyword">null</span> <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> p<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">final</span> <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> <span class="token function">getEntry</span><span class="token punctuation">(</span><span class="token class-name">Object</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Offload comparator-based version for sake of performance</span>
+        <span class="token comment">// 判断有没有传入comparator</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>comparator <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+            <span class="token comment">// 调用此方法，使用比较器查询</span>
+            <span class="token keyword">return</span> <span class="token function">getEntryUsingComparator</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 判断传入的键值是否为null</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+            <span class="token comment">// 如果传入的键值为null，则抛出空指针异常</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">NullPointerException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 把Object的键向下转型为Comparable</span>
+        <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">&quot;unchecked&quot;</span><span class="token punctuation">)</span>
+            <span class="token class-name">Comparable</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> <span class="token class-name">K</span><span class="token punctuation">&gt;</span></span> k <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Comparable</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> <span class="token class-name">K</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">)</span> key<span class="token punctuation">;</span>
+        <span class="token comment">// 先把二叉树的根结点复制非p</span>
+        <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> p <span class="token operator">=</span> root<span class="token punctuation">;</span>
+        <span class="token comment">// 如果p不null，一只循环比较</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>p <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 调用Comparable的compareTo方法进行比较</span>
+            <span class="token keyword">int</span> cmp <span class="token operator">=</span> k<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 如果cmp小于0，表示要查找的键小于结点的数字</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                <span class="token comment">// 把p左子结点值赋值给p对象</span>
+                p <span class="token operator">=</span> p<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                p <span class="token operator">=</span> p<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                <span class="token comment">// 要查找的键等于结点的值，就把当前的entry对象返回</span>
+                <span class="token keyword">return</span> p<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 已经找到叶子结点，没有查找到要找的数字，返回null</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 使用比较器的情况</span>
+    <span class="token keyword">final</span> <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> <span class="token function">getEntryUsingComparator</span><span class="token punctuation">(</span><span class="token class-name">Object</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">&quot;unchecked&quot;</span><span class="token punctuation">)</span>
+            <span class="token class-name">K</span> k <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">K</span><span class="token punctuation">)</span> key<span class="token punctuation">;</span>
+        <span class="token class-name">Comparator</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> <span class="token class-name">K</span><span class="token punctuation">&gt;</span></span> cpr <span class="token operator">=</span> comparator<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cpr <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> p <span class="token operator">=</span> root<span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>p <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">int</span> cmp <span class="token operator">=</span> cpr<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> p<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    p <span class="token operator">=</span> p<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+                <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    p <span class="token operator">=</span> p<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
+                <span class="token keyword">else</span>
+                    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre></div><p><strong>put方法</strong></p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token class-name">V</span> <span class="token function">put</span><span class="token punctuation">(</span><span class="token class-name">K</span> key<span class="token punctuation">,</span> <span class="token class-name">V</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 获取根结点，赋值给变量t</span>
+        <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> t <span class="token operator">=</span> root<span class="token punctuation">;</span>
+        <span class="token comment">// 判断根结点是否为null</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>t <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 对key进行非空和类型校验</span>
+            <span class="token function">compare</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// type (and possibly null) check</span>
+            <span class="token comment">// 新建一个结点</span>
+            root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 设置集合的长度为1</span>
+            size <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token comment">//记录集合被修改的次数</span>
+            modCount<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token comment">//添加成功返回null</span>
+            <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 如果根结点不是null，执行下面的代码</span>
+        <span class="token keyword">int</span> cmp<span class="token punctuation">;</span>
+        <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> parent<span class="token punctuation">;</span>
+        <span class="token comment">// split comparator and comparable paths</span>
+        <span class="token comment">// 把比较器对象赋值给 cpr</span>
+        <span class="token class-name">Comparator</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> <span class="token class-name">K</span><span class="token punctuation">&gt;</span></span> cpr <span class="token operator">=</span> comparator<span class="token punctuation">;</span>
+        <span class="token comment">// 判断比较器对象，如果是null，则执行以下代码</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cpr <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">do</span> <span class="token punctuation">{</span>
+                <span class="token comment">//把当前结点复制给变量parent</span>
+                parent <span class="token operator">=</span> t<span class="token punctuation">;</span>
+                <span class="token comment">// 比较当前结点的键和要存储的键的大小</span>
+                cmp <span class="token operator">=</span> cpr<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> t<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// 如果要存储的键小于当前结点，则继续和左边的结点进行比较</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    t <span class="token operator">=</span> t<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+                <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    t <span class="token operator">=</span> t<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
+                <span class="token keyword">else</span>
+                    <span class="token comment">// 如果等于0</span>
+                    <span class="token keyword">return</span> t<span class="token punctuation">.</span><span class="token function">setValue</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>t <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">NullPointerException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">&quot;unchecked&quot;</span><span class="token punctuation">)</span>
+                <span class="token class-name">Comparable</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> <span class="token class-name">K</span><span class="token punctuation">&gt;</span></span> k <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Comparable</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> <span class="token class-name">K</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">)</span> key<span class="token punctuation">;</span>
+            <span class="token keyword">do</span> <span class="token punctuation">{</span>
+                parent <span class="token operator">=</span> t<span class="token punctuation">;</span>
+                cmp <span class="token operator">=</span> k<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    t <span class="token operator">=</span> t<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+                <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    t <span class="token operator">=</span> t<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
+                <span class="token keyword">else</span>
+                    <span class="token keyword">return</span> t<span class="token punctuation">.</span><span class="token function">setValue</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>t <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 遍历结束，如果没有找到相同的键，则执行下面的代码</span>
+        <span class="token comment">// 新增的键和以前的键不相同，去创建结点</span>
+        <span class="token comment">// 创建新的结点对象，保存键值对，设置父结点</span>
+        <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> e <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> parent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            parent<span class="token punctuation">.</span>left <span class="token operator">=</span> e<span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            parent<span class="token punctuation">.</span>right <span class="token operator">=</span> e<span class="token punctuation">;</span>
+        <span class="token comment">// 进行二叉树的重平衡</span>
+        <span class="token function">fixAfterInsertion</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        size<span class="token operator">++</span><span class="token punctuation">;</span>
+        modCount<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/java-about/03java/04nio.html" class="prev">
+        04 开始学习nio
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.1712b6ed.js" defer></script><script src="/assets/js/2.ebd0d7f0.js" defer></script><script src="/assets/js/14.b6c9a82f.js" defer></script>
+  </body>
+</html>
