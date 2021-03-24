@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>06 并发编程 02 | clxmm</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <script src="https://v1.cnzz.com/z_stat.php?id=1278957718&amp;web_id=1278957718"></script>
+    <meta name="description" content="clxmm">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.49c16197.js" as="script"><link rel="preload" href="/assets/js/2.ebd0d7f0.js" as="script"><link rel="preload" href="/assets/js/16.d1723b2c.js" as="script"><link rel="prefetch" href="/assets/js/10.a9dd6683.js"><link rel="prefetch" href="/assets/js/11.509d2a53.js"><link rel="prefetch" href="/assets/js/12.a57bf319.js"><link rel="prefetch" href="/assets/js/13.93fc392d.js"><link rel="prefetch" href="/assets/js/14.b05e3301.js"><link rel="prefetch" href="/assets/js/15.1f5e72fb.js"><link rel="prefetch" href="/assets/js/17.5e61f224.js"><link rel="prefetch" href="/assets/js/18.380ac4f5.js"><link rel="prefetch" href="/assets/js/19.b8648ef5.js"><link rel="prefetch" href="/assets/js/20.54df0986.js"><link rel="prefetch" href="/assets/js/21.cbd44017.js"><link rel="prefetch" href="/assets/js/22.267969c2.js"><link rel="prefetch" href="/assets/js/23.d6c41710.js"><link rel="prefetch" href="/assets/js/3.72daeb1d.js"><link rel="prefetch" href="/assets/js/4.2979d6aa.js"><link rel="prefetch" href="/assets/js/5.0aadf1e8.js"><link rel="prefetch" href="/assets/js/6.78397fcc.js"><link rel="prefetch" href="/assets/js/7.70525af3.js"><link rel="prefetch" href="/assets/js/8.58739c74.js"><link rel="prefetch" href="/assets/js/9.3745ac7d.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">clxmm</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Java03</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java-about/03java/01synchronized.html" class="sidebar-link">05 并发编程中的synchronized  (1)</a></li><li><a href="/java-about/03java/02IO.html" class="sidebar-link">02 java 的io流</a></li><li><a href="/java-about/03java/03bio.html" class="sidebar-link">03 java bio</a></li><li><a href="/java-about/03java/04nio.html" class="sidebar-link">04 开始学习nio</a></li><li><a href="/java-about/03java/05treeMap.html" class="sidebar-link">05 TreeMap</a></li><li><a href="/java-about/03java/06thread.html" class="sidebar-link">06 并发编程</a></li><li><a href="/java-about/03java/06thread01.html" aria-current="page" class="active sidebar-link">06 并发编程 02</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/03java/06thread01.html#_1-线程" class="sidebar-link">1 线程</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/03java/06thread01.html#_1-1-创建和运行线程" class="sidebar-link">1.1 创建和运行线程</a></li></ul></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-线程"><a href="#_1-线程" class="header-anchor">#</a> 1 线程</h2> <h3 id="_1-1-创建和运行线程"><a href="#_1-1-创建和运行线程" class="header-anchor">#</a> 1.1 创建和运行线程</h3> <p><strong>方法一，直接使用 Thread</strong>(class)  implements Runnable</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">// 创建线程对象</span>
+<span class="token class-name">Thread</span> t <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token comment">// 要执行的任务</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 启动线程</span>
+t<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>​	如：</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">// 构造方法的参数是给线程指定名字，推荐</span>
+<span class="token class-name">Thread</span> t1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token string">&quot;t1&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token annotation punctuation">@Override</span>
+ <span class="token comment">// run 方法内实现了要执行的任务</span>
+ <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;hello&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+t1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>方法二，使用 (interface)Runnable 配合 Thread</strong></p> <p>把【线程】和【任务】（要执行的代码）分开</p> <ul><li>hread 代表线程</li> <li>Runnable 可运行的任务（线程要执行的代码）</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token class-name">Runnable</span> runnable <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+ <span class="token comment">// 要执行的任务</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 创建线程对象</span>
+<span class="token class-name">Thread</span> t <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span> runnable <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 启动线程</span>
+t<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+</code></pre></div><p>Java 8 以后可以使用 lambda 精简代码</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">// 创建任务对象</span>
+<span class="token class-name">Runnable</span> task2 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;hello&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 参数1 是任务对象; 参数2 是线程名字，推荐</span>
+<span class="token class-name">Thread</span> t2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>task2<span class="token punctuation">,</span> <span class="token string">&quot;t2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+t2<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>​</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/java-about/03java/06thread.html" class="prev">
+        06 并发编程
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.49c16197.js" defer></script><script src="/assets/js/2.ebd0d7f0.js" defer></script><script src="/assets/js/16.d1723b2c.js" defer></script>
+  </body>
+</html>
