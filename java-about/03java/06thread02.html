@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>06 并发编程 03 | clxmm</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <script><script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1279012574&web_id=1279012574"></script></script>
+    <meta name="description" content="clxmm">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.6ab5cd64.js" as="script"><link rel="preload" href="/assets/js/2.ebd0d7f0.js" as="script"><link rel="preload" href="/assets/js/17.7cb2bc9f.js" as="script"><link rel="prefetch" href="/assets/js/10.1770591f.js"><link rel="prefetch" href="/assets/js/11.b04e85b9.js"><link rel="prefetch" href="/assets/js/12.384cb7e1.js"><link rel="prefetch" href="/assets/js/13.6b8e3121.js"><link rel="prefetch" href="/assets/js/14.a8b6e46e.js"><link rel="prefetch" href="/assets/js/15.858d0194.js"><link rel="prefetch" href="/assets/js/16.ff494546.js"><link rel="prefetch" href="/assets/js/18.ab73e8d5.js"><link rel="prefetch" href="/assets/js/19.35df5142.js"><link rel="prefetch" href="/assets/js/20.dfe9feb2.js"><link rel="prefetch" href="/assets/js/21.54581af5.js"><link rel="prefetch" href="/assets/js/22.c0cdbb11.js"><link rel="prefetch" href="/assets/js/23.01b6b70a.js"><link rel="prefetch" href="/assets/js/24.0a701a47.js"><link rel="prefetch" href="/assets/js/25.537e97ff.js"><link rel="prefetch" href="/assets/js/26.a015f439.js"><link rel="prefetch" href="/assets/js/27.365193c4.js"><link rel="prefetch" href="/assets/js/28.36cce8e3.js"><link rel="prefetch" href="/assets/js/3.7b107591.js"><link rel="prefetch" href="/assets/js/4.2979d6aa.js"><link rel="prefetch" href="/assets/js/5.0aadf1e8.js"><link rel="prefetch" href="/assets/js/6.78397fcc.js"><link rel="prefetch" href="/assets/js/7.b51c7eac.js"><link rel="prefetch" href="/assets/js/8.d07065cb.js"><link rel="prefetch" href="/assets/js/9.d335c13f.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">clxmm</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web" class="dropdown-title"><span class="title">web</span> <span class="arrow down"></span></button> <button type="button" aria-label="web" class="mobile-dropdown-title"><span class="title">web</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/web/01web/01web01.html" class="nav-link">
+  web基础
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web" class="dropdown-title"><span class="title">web</span> <span class="arrow down"></span></button> <button type="button" aria-label="web" class="mobile-dropdown-title"><span class="title">web</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/web/01web/01web01.html" class="nav-link">
+  web基础
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Java03</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java-about/03java/01synchronized.html" class="sidebar-link">05 并发编程中的synchronized  (1)</a></li><li><a href="/java-about/03java/02IO.html" class="sidebar-link">02 java 的io流</a></li><li><a href="/java-about/03java/03bio.html" class="sidebar-link">03 java bio</a></li><li><a href="/java-about/03java/04nio.html" class="sidebar-link">04 开始学习nio</a></li><li><a href="/java-about/03java/05treeMap.html" class="sidebar-link">05 TreeMap</a></li><li><a href="/java-about/03java/06thread.html" class="sidebar-link">06 并发编程</a></li><li><a href="/java-about/03java/06thread01.html" class="sidebar-link">06 并发编程 02</a></li><li><a href="/java-about/03java/06thread02.html" aria-current="page" class="active sidebar-link">06 并发编程 03</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/03java/06thread02.html#_1-线程" class="sidebar-link">1 线程</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/03java/06thread02.html#_1-11-主线程与守护线程" class="sidebar-link">1.11 主线程与守护线程</a></li><li class="sidebar-sub-header"><a href="/java-about/03java/06thread02.html#_1-12-五种状态" class="sidebar-link">1.12 五种状态</a></li><li class="sidebar-sub-header"><a href="/java-about/03java/06thread02.html#_1-13-13-六种状态" class="sidebar-link">1.13 13 六种状态</a></li><li class="sidebar-sub-header"><a href="/java-about/03java/06thread02.html#_1-14-习题" class="sidebar-link">1.14 习题</a></li></ul></li><li class="sidebar-sub-header"><a href="/java-about/03java/06thread02.html#第二章" class="sidebar-link">第二章</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-线程"><a href="#_1-线程" class="header-anchor">#</a> 1 线程</h2> <h3 id="_1-11-主线程与守护线程"><a href="#_1-11-主线程与守护线程" class="header-anchor">#</a> 1.11 主线程与守护线程</h3> <p>默认情况下，Java 进程需要等待所有线程都运行结束，才会结束。有一种特殊的线程叫做守护线程，只要其它非守护线程运行结束了，即使守护线程的代码没有执行完，也会强制结束。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;开始运行...&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Thread</span> t1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;开始运行...&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">2_000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;运行结束...&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">&quot;daemon&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 设置该线程为守护线程</span>
+        t1<span class="token punctuation">.</span><span class="token function">setDaemon</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1_000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;运行结束...&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>输出：</p> <div class="language- extra-class"><pre class="language-text"><code>16:47:56.052 [main] DEBUG org.clxmm.thread.Demo18 - 开始运行...
+16:47:56.183 [daemon] DEBUG org.clxmm.thread.Demo18 - 开始运行...
+16:47:57.187 [main] DEBUG org.clxmm.thread.Demo18 - 运行结束...
+</code></pre></div><ul><li>注意
+<ul><li>垃圾回收器线程就是一种守护线程</li> <li>Tomcat 中的 Acceptor 和 Poller 线程都是守护线程，所以 Tomcat 接收到 shutdown 命令后，不会等待它们处理完当前请求</li></ul></li></ul> <h3 id="_1-12-五种状态"><a href="#_1-12-五种状态" class="header-anchor">#</a> 1.12 五种状态</h3> <p>这是从<strong>操作系统</strong> 层面来描述的</p> <img src="https://cdn.jsdelivr.net/gh/clxmm/image@main/img/2021/0320210328173257thread.png" style="zoom:80%;"> <ul><li><p>【初始状态】仅是在语言层面创建了线程对象，还未与操作系统线程关联</p></li> <li><p>【可运行状态】（就绪状态）指该线程已经被创建（与操作系统线程关联），可以由 CPU 调度执行</p></li> <li><p>【运行状态】指获取了 CPU 时间片运行中的状态</p> <ul><li>当 CPU 时间片用完，会从【运行状态】转换至【可运行状态】，会导致线程的上下文切换</li></ul></li> <li><p>【阻塞状态】</p> <ul><li>如果调用了阻塞 API，如 BIO 读写文件，这时该线程实际不会用到 CPU，会导致线程上下文切换，进入【阻塞状态】</li> <li>等 BIO 操作完毕，会由操作系统唤醒阻塞的线程，转换至【可运行状态】</li> <li>与【可运行状态】的区别是，对【阻塞状态】的线程来说只要它们一直不唤醒，调度器就一直不会考虑调度它们</li></ul></li> <li><p>【终止状态】表示线程已经执行完毕，生命周期已经结束，不会再转换为其它状态</p></li></ul> <h3 id="_1-13-13-六种状态"><a href="#_1-13-13-六种状态" class="header-anchor">#</a> 1.13 13 六种状态</h3> <p>这是从 Java API 层面来描述的</p> <p>根据 Thread.State 枚举，分为六种状态</p> <p><img src="https://cdn.jsdelivr.net/gh/clxmm/image@main/img/2021/0320210328173650thread.png" alt=""></p> <ul><li>NEW 线程刚被创建，但是还没有调用 start() 方法</li> <li>RUNNABLE 当调用了 start() 方法之后，注意，Java API 层面的 RUNNABLE 状态涵盖了 操作系统 层面的【可运行状态】、【运行状态】和【阻塞状态】（由于 BIO 导致的线程阻塞，在 Java 里无法区分，仍然认为是可运行）</li> <li>BLOCKED ， WAITING ， TIMED_WAITING 都是 Java API 层面对【阻塞状态】的细分，后面会在状态转换一节</li> <li>TERMINATED 当线程代码运行结束</li></ul> <p>六种状态出现情况</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name">Thread</span> t1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token string">&quot;t1&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment">// NEW</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;running &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">//        t1.start();</span>
+
+
+        <span class="token class-name">Thread</span> t2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token string">&quot;t2&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment">// RUNNABLE</span>
+
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        t2<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token class-name">Thread</span> t3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token string">&quot;t3&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>   <span class="token comment">// TERMINATED</span>
+                log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;running &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        t3<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token class-name">Thread</span> t4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token string">&quot;t4&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token class-name">Demo19</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                        <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1000_000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// TIMED_WAITING</span>
+                    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        t4<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Thread</span> t5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token string">&quot;t5&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    t2<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// waiting</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        t5<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">Thread</span> t6 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token string">&quot;t6&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token class-name">Demo19</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                        <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">100_000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//BLOCKED</span>
+                    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        t6<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;t1: {}&quot;</span><span class="token punctuation">,</span> t1<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;t2: {}&quot;</span><span class="token punctuation">,</span> t2<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;t3: {}&quot;</span><span class="token punctuation">,</span> t3<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;t4: {}&quot;</span><span class="token punctuation">,</span> t4<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;t5: {}&quot;</span><span class="token punctuation">,</span> t5<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;t6: {}&quot;</span><span class="token punctuation">,</span> t6<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+</code></pre></div><p>输出:</p> <div class="language- extra-class"><pre class="language-text"><code>20:14:39.269 [main] DEBUG org.clxmm.thread.Demo19 - t1: NEW
+20:14:39.269 [t3] DEBUG org.clxmm.thread.Demo19 - running 
+20:14:39.274 [main] DEBUG org.clxmm.thread.Demo19 - t2: RUNNABLE
+20:14:39.274 [main] DEBUG org.clxmm.thread.Demo19 - t3: TERMINATED
+20:14:39.274 [main] DEBUG org.clxmm.thread.Demo19 - t4: TIMED_WAITING
+20:14:39.274 [main] DEBUG org.clxmm.thread.Demo19 - t5: WAITING
+20:14:39.275 [main] DEBUG org.clxmm.thread.Demo19 - t6: BLOCKED
+</code></pre></div><h3 id="_1-14-习题"><a href="#_1-14-习题" class="header-anchor">#</a> 1.14 习题</h3> <p>比如，想泡壶茶喝。当时的情况是：开水没有；水壶要洗，茶壶、茶杯要洗；火已生了，茶叶也有了。怎么 办？</p> <ul><li>办法甲：洗好水壶，灌上凉水，放在火上；在等待水开的时间里，洗茶壶、洗茶杯、拿茶叶；等水开了，泡茶喝。</li> <li>办法乙：先做好一些准备工作，洗水壶，洗茶壶茶杯，拿茶叶；一切就绪，灌水烧水；坐待水开了，泡茶喝。</li> <li>办法丙：洗净水壶，灌上凉水，放在火上，坐待水开；水开了之后，急急忙忙找茶叶，洗茶壶茶杯，泡茶喝。</li></ul> <p>哪一种办法省时间？我们能一眼看出，第一种办法好，后两种办法都窝了工。</p> <p>水壶不洗，不能烧开水，因而洗水壶是烧开水的前提。没开水、没茶叶、不洗茶壶茶杯，就不能泡茶，因而这些又是泡茶的前提。</p> <p>​	启动四个线程，有点浪费</p> <img src="https://cdn.jsdelivr.net/gh/clxmm/image@main/img/2021/0320210328202047thread.png" style="zoom:67%;"> <p>启动两个线程：</p> <p><img src="https://cdn.jsdelivr.net/gh/clxmm/image@main/img/2021/0320210328202215thread.png" alt=""></p> <p>Java 代码</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Thread</span> t1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;吸水壶&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1_000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;烧开水&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">5_000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">&quot;t1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        <span class="token class-name">Thread</span> t2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;洗茶壶&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1_000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;洗茶杯&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">2_000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;拿茶叶&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1_000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// 走到这时等待t1 线程完成</span>
+                t1<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;泡茶&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">&quot;t2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        t1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t2<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token punctuation">}</span>
+</code></pre></div><p>s输出：</p> <div class="language- extra-class"><pre class="language-text"><code>20:29:03.421 [t2] DEBUG org.clxmm.thread.Demo20 - 洗茶壶
+20:29:03.421 [t1] DEBUG org.clxmm.thread.Demo20 - 吸水壶
+20:29:04.430 [t2] DEBUG org.clxmm.thread.Demo20 - 洗茶杯
+20:29:04.430 [t1] DEBUG org.clxmm.thread.Demo20 - 烧开水
+20:29:06.435 [t2] DEBUG org.clxmm.thread.Demo20 - 拿茶叶
+20:29:09.433 [t2] DEBUG org.clxmm.thread.Demo20 - 泡茶
+</code></pre></div><ul><li>上面模拟了，t2等t1  如何反过来</li> <li>上面都是各自执行各自的，t1 如何 把 水壶交给 t2 泡茶 ，或者 t2 把茶叶交个t1 （数据共享）</li></ul> <p><strong>第一章小结</strong></p> <ul><li>线程创建</li> <li>线程重要 api，如 start，run，sleep，join，interrupt 等</li> <li>线程状态</li> <li>应用方面
+<ul><li>异步调用：主线程执行期间，其它线程异步执行耗时操作</li> <li>提高效率：并行计算，缩短运算时间</li> <li>同步等待：join</li> <li>统筹规划：合理使用线程，得到最优效果</li></ul></li> <li>原理方面
+<ul><li>线程运行流程：栈、栈帧、上下文切换、程序计数器</li> <li>Thread 两种创建方式 的源码</li></ul></li> <li>模式方面
+<ul><li>终止模式之两阶段终止</li></ul></li></ul> <h2 id="第二章"><a href="#第二章" class="header-anchor">#</a> 第二章</h2> <table><thead><tr><th></th> <th></th> <th></th></tr></thead> <tbody><tr><td></td> <td></td> <td></td></tr> <tr><td></td> <td></td> <td></td></tr> <tr><td></td> <td></td> <td></td></tr></tbody></table></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/java-about/03java/06thread01.html" class="prev">
+        06 并发编程 02
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6ab5cd64.js" defer></script><script src="/assets/js/2.ebd0d7f0.js" defer></script><script src="/assets/js/17.7cb2bc9f.js" defer></script>
+  </body>
+</html>
