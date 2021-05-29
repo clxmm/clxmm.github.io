@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>02 web集成shiro | clxmm</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="clxmm">
+    
+    <link rel="preload" href="/assets/css/0.styles.495d9abf.css" as="style"><link rel="preload" href="/assets/js/app.8ff7ee33.js" as="script"><link rel="preload" href="/assets/js/2.5286b244.js" as="script"><link rel="preload" href="/assets/js/25.5344faf6.js" as="script"><link rel="prefetch" href="/assets/js/10.1770591f.js"><link rel="prefetch" href="/assets/js/11.b04e85b9.js"><link rel="prefetch" href="/assets/js/12.384cb7e1.js"><link rel="prefetch" href="/assets/js/13.6b8e3121.js"><link rel="prefetch" href="/assets/js/14.a8b6e46e.js"><link rel="prefetch" href="/assets/js/15.a84eecc2.js"><link rel="prefetch" href="/assets/js/16.fd25052f.js"><link rel="prefetch" href="/assets/js/17.9a0b32ff.js"><link rel="prefetch" href="/assets/js/18.034d41fa.js"><link rel="prefetch" href="/assets/js/19.ca4f5316.js"><link rel="prefetch" href="/assets/js/20.b624f37b.js"><link rel="prefetch" href="/assets/js/21.a5a9753a.js"><link rel="prefetch" href="/assets/js/22.0e2efc5d.js"><link rel="prefetch" href="/assets/js/23.71504236.js"><link rel="prefetch" href="/assets/js/24.a160bc40.js"><link rel="prefetch" href="/assets/js/26.db5fcb73.js"><link rel="prefetch" href="/assets/js/27.9a19085e.js"><link rel="prefetch" href="/assets/js/28.3033ea4e.js"><link rel="prefetch" href="/assets/js/29.ac20654f.js"><link rel="prefetch" href="/assets/js/3.3f1741e8.js"><link rel="prefetch" href="/assets/js/30.97dd4ae1.js"><link rel="prefetch" href="/assets/js/31.38041b80.js"><link rel="prefetch" href="/assets/js/32.bc93e345.js"><link rel="prefetch" href="/assets/js/33.d6ca0152.js"><link rel="prefetch" href="/assets/js/34.f7c420c7.js"><link rel="prefetch" href="/assets/js/35.f55721fd.js"><link rel="prefetch" href="/assets/js/36.4b36a038.js"><link rel="prefetch" href="/assets/js/37.31bab1ba.js"><link rel="prefetch" href="/assets/js/38.98c1f0fc.js"><link rel="prefetch" href="/assets/js/39.aaac78de.js"><link rel="prefetch" href="/assets/js/4.3b2a6a89.js"><link rel="prefetch" href="/assets/js/40.d4eb223a.js"><link rel="prefetch" href="/assets/js/41.0436ca48.js"><link rel="prefetch" href="/assets/js/42.87024d7f.js"><link rel="prefetch" href="/assets/js/43.0a23da9c.js"><link rel="prefetch" href="/assets/js/44.73e4a9ec.js"><link rel="prefetch" href="/assets/js/45.0b8e2c1e.js"><link rel="prefetch" href="/assets/js/46.571677c0.js"><link rel="prefetch" href="/assets/js/47.69d53c3b.js"><link rel="prefetch" href="/assets/js/48.9dca4458.js"><link rel="prefetch" href="/assets/js/49.364ad217.js"><link rel="prefetch" href="/assets/js/5.0aadf1e8.js"><link rel="prefetch" href="/assets/js/50.6393e076.js"><link rel="prefetch" href="/assets/js/51.cc82d8b6.js"><link rel="prefetch" href="/assets/js/52.0ce0a00d.js"><link rel="prefetch" href="/assets/js/53.4d309513.js"><link rel="prefetch" href="/assets/js/54.36fecfc8.js"><link rel="prefetch" href="/assets/js/55.0b6c6729.js"><link rel="prefetch" href="/assets/js/56.9a371d58.js"><link rel="prefetch" href="/assets/js/57.5fecf104.js"><link rel="prefetch" href="/assets/js/6.78397fcc.js"><link rel="prefetch" href="/assets/js/7.b51c7eac.js"><link rel="prefetch" href="/assets/js/8.58739c74.js"><link rel="prefetch" href="/assets/js/9.15fe2da7.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.495d9abf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">clxmm</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/01shiro/01.html" class="nav-link">
+  shiro
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web" class="dropdown-title"><span class="title">web</span> <span class="arrow down"></span></button> <button type="button" aria-label="web" class="mobile-dropdown-title"><span class="title">web</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/web/01web/01web01.html" class="nav-link">
+  web基础
+</a></li><li class="dropdown-item"><!----> <a href="/web/02js/01js.html" class="nav-link">
+  js基础
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/01shiro/01.html" class="nav-link">
+  shiro
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web" class="dropdown-title"><span class="title">web</span> <span class="arrow down"></span></button> <button type="button" aria-label="web" class="mobile-dropdown-title"><span class="title">web</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/web/01web/01web01.html" class="nav-link">
+  web基础
+</a></li><li class="dropdown-item"><!----> <a href="/web/02js/01js.html" class="nav-link">
+  js基础
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>shiro</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java-about/06app/01shiro/01.html" class="sidebar-link">01 shiro</a></li><li><a href="/java-about/06app/01shiro/02.html" aria-current="page" class="active sidebar-link">02 web集成shiro</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/02.html#web项目集成shiro" class="sidebar-link">Web项目集成Shiro</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/02.html#_1、web集成原理分析" class="sidebar-link">1、Web集成原理分析</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/02.html#_2、shiro默认过滤器" class="sidebar-link">2、Shiro默认过滤器</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/02.html#_3、web集成完整案例" class="sidebar-link">3、Web集成完整案例</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/02.html#_4、web项目授权" class="sidebar-link">4、web项目授权</a></li></ul></li></ul></li><li><a href="/java-about/06app/01shiro/03.html" class="sidebar-link">03 shiro 与 springboot</a></li><li><a href="/java-about/06app/01shiro/04.html" class="sidebar-link">04 shiro 的Realm缓存机制</a></li><li><a href="/java-about/06app/01shiro/05.html" class="sidebar-link">05 实现分布式会话SessionManager</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="web项目集成shiro"><a href="#web项目集成shiro" class="header-anchor">#</a> Web项目集成Shiro</h2> <h3 id="_1、web集成原理分析"><a href="#_1、web集成原理分析" class="header-anchor">#</a> 1、Web集成原理分析</h3> <p>【1】web集成的配置
+以前我们在没有与WEB环境进行集成的时候，为了生成SecurityManager对象，是通过手动读取配置文件生成工厂对象，再通过工厂对象获取到SecurityManager的。就像下面代码展示的那样</p> <div class="language-java extra-class"><pre class="language-java"><code> <span class="token comment">/**
+   * @Description 登录方法
+   */</span>
+<span class="token keyword">private</span> <span class="token class-name">Subject</span> <span class="token function">shiroLogin</span><span class="token punctuation">(</span><span class="token class-name">String</span> loginName<span class="token punctuation">,</span><span class="token class-name">String</span> password<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//导入权限ini文件构建权限工厂</span>
+    <span class="token class-name">Factory</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SecurityManager</span><span class="token punctuation">&gt;</span></span> factory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">IniSecurityManagerFactory</span><span class="token punctuation">(</span><span class="token string">&quot;classpath:shiro.ini&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//工厂构建安全管理器</span>
+    <span class="token class-name">SecurityManager</span> securityManager <span class="token operator">=</span> factory<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//使用SecurityUtils工具生效安全管理器</span>
+    <span class="token class-name">SecurityUtils</span><span class="token punctuation">.</span><span class="token function">setSecurityManager</span><span class="token punctuation">(</span>securityManager<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//使用SecurityUtils工具获得主体</span>
+    <span class="token class-name">Subject</span> subject <span class="token operator">=</span> <span class="token class-name">SecurityUtils</span><span class="token punctuation">.</span><span class="token function">getSubject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//构建账号token</span>
+    <span class="token class-name">UsernamePasswordToken</span> usernamePasswordToken <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UsernamePasswordToken</span><span class="token punctuation">(</span>loginName<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//登录操作</span>
+    subject<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span>usernamePasswordToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> subject<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>不过，现在我们既然说要与WEB集成，那么首先要做的事情就是把我们的shiro.ini这个配置文件交付到WEB环境中，定义shiro.ini文件如下</p> <div class="language-ini extra-class"><pre class="language-ini"><code><span class="token comment">#声明自定义的realm，且为安全管理器指定realms</span>
+<span class="token selector">[main]</span>
+<span class="token constant">definitionRealm</span><span class="token attr-value"><span class="token punctuation">=</span>com.itheima.shiro.realm.DefinitionRealm</span>
+<span class="token constant">securityManager.realms</span><span class="token attr-value"><span class="token punctuation">=</span>$definitionRealm</span>
+</code></pre></div><p>【1.1】新建项目</p> <div class="language-xml extra-class"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>commons-logging<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>commons-logging<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.1.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.shiro<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>shiro-core<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.3.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.shiro<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>shiro-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.3.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.11<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>web.xml配置</p> <div class="language-xml extra-class"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>web-app</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">&quot;</span></span>
+         <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://java.sun.com/xml/ns/javaee<span class="token punctuation">&quot;</span></span>
+         <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd<span class="token punctuation">&quot;</span></span>
+         <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>3.0<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>display-name</span><span class="token punctuation">&gt;</span></span>shiro-day01-07web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>display-name</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token comment">&lt;!-- 初始化SecurityManager对象所需要的环境--&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>context-param</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">&gt;</span></span>shiroEnvironmentClass<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">&gt;</span></span>org.apache.shiro.web.env.IniWebEnvironment<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>context-param</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token comment">&lt;!-- 指定Shiro的配置文件的位置 --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>context-param</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-name</span><span class="token punctuation">&gt;</span></span>shiroConfigLocations<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-name</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>param-value</span><span class="token punctuation">&gt;</span></span>classpath:shiro.ini<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>param-value</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>context-param</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token comment">&lt;!-- 监听服务器启动时，创建shiro的web环境。
+       即加载shiroEnvironmentClass变量指定的IniWebEnvironment类--&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>listener</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>listener-class</span><span class="token punctuation">&gt;</span></span>org.apache.shiro.web.env.EnvironmentLoaderListener<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>listener-class</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>listener</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token comment">&lt;!-- shiro的l过滤入口，过滤一切请求 --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">&gt;</span></span>shiroFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-class</span><span class="token punctuation">&gt;</span></span>org.apache.shiro.web.servlet.ShiroFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-class</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-mapping</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>filter-name</span><span class="token punctuation">&gt;</span></span>shiroFilter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-name</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- 过滤所有请求 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url-pattern</span><span class="token punctuation">&gt;</span></span>/*<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url-pattern</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>filter-mapping</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>web-app</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>【2】SecurityManager对象创建
+（1）我启动了服务器，监听器捕获到了服务器启动事件。我现在所处的位置EnvironmentLoaderListener监听器的入口处
+<img src="https://cdn.jsdelivr.net/gh/clxmm/image@main/img/202105/shiro20210517203845.png" alt=""></p> <p>（2）进入方法内查看，它先根据我们的shiroEnvironmentClass变量的值org.apache.shiro.web.env.IniWebEnvironment，初始化一个shiro环境对象
+<img src="https://cdn.jsdelivr.net/gh/clxmm/image@main/img/202105/shiro20210517203914.png" alt=""></p> <p>（3）最后在创建一个SecurityManager对象，再将其绑定到刚才通过字节码创建的Shiro环境对象中
+<img src="https://cdn.jsdelivr.net/gh/clxmm/image@main/img/202105/shiro20210517203953.png" alt=""></p> <p><img src="https://cdn.jsdelivr.net/gh/clxmm/image@main/img/202105/shiro20210517204016.png" alt=""></p> <p><img src="https://cdn.jsdelivr.net/gh/clxmm/image@main/img/202105/shiro20210517204039.png" alt=""></p> <p>到这来SecurityManager就完成了初始化</p> <h3 id="_2、shiro默认过滤器"><a href="#_2、shiro默认过滤器" class="header-anchor">#</a> 2、Shiro默认过滤器</h3> <p>Shiro内置了很多默认的过滤器，比如身份验证、授权等相关的。默认过滤器可以参考org.apache.shiro.web.filter.mgt.DefaultFilter中的枚举过滤器</p> <p><img src="https://cdn.jsdelivr.net/gh/clxmm/image@main/img/202105/shiro20210517204153.png" alt=""></p> <p>【1】认证相关</p> <table><thead><tr><th>过滤器</th> <th>过滤器类</th> <th>说明</th> <th>默认</th></tr></thead> <tbody><tr><td>authc</td> <td>FormAuthenticationFilter</td> <td>基于表单的过滤器；如“/**=authc”，如果没有登录会跳到相应的登录页面登录</td> <td>无</td></tr> <tr><td>logout</td> <td>LogoutFilter</td> <td>退出过滤器，主要属性：redirectUrl：退出成功后重定向的地址，如“/logout=logout”</td> <td>/</td></tr> <tr><td>anon</td> <td>AnonymousFilter</td> <td>匿名过滤器，即不需要登录即可访问；一般用于静态资源过滤；示例“/static/**=anon”</td> <td>无</td></tr></tbody></table> <p>【2】授权相关</p> <table><thead><tr><th>过滤器</th> <th>过滤器类</th> <th>说明</th> <th>默认</th></tr></thead> <tbody><tr><td>roles</td> <td>RolesAuthorizationFilter</td> <td>角色授权拦截器，验证用户是否拥有所有角色；主要属性： loginUrl：登录页面地址（/login.jsp）；unauthorizedUrl：未授权后重定向的地址；示例“/admin/**=roles[admin]”</td> <td>无</td></tr> <tr><td>perms</td> <td>PermissionsAuthorizationFilter</td> <td>权限授权拦截器，验证用户是否拥有所有权限；属性和roles一样；示例“/user/**=perms[&quot;user:create&quot;]”</td> <td>无</td></tr> <tr><td>port</td> <td>PortFilter</td> <td>端口拦截器，主要属性：port（80）：可以通过的端口；示例“/test= port[80]”，如果用户访问该页面是非80，将自动将请求端口改为80并重定向到该80端口，其他路径/参数等都一样</td> <td>无</td></tr> <tr><td>rest</td> <td>HttpMethodPermissionFilter</td> <td>rest风格拦截器，自动根据请求方法构建权限字符串（GET=read, POST=create,PUT=update,DELETE=delete,HEAD=read,TRACE=read,OPTIONS=read, MKCOL=create）构建权限字符串；示例“/users=rest[user]”，会自动拼出“user:read,user:create,user:update,user:delete”权限字符串进行权限匹配（所有都得匹配，isPermittedAll）</td> <td>无</td></tr> <tr><td>ssl</td> <td>SslFilter</td> <td>SSL拦截器，只有请求协议是https才能通过；否则自动跳转会https端口（443）；其他和port拦截器一样；</td> <td>无</td></tr></tbody></table> <h3 id="_3、web集成完整案例"><a href="#_3、web集成完整案例" class="header-anchor">#</a> 3、Web集成完整案例</h3> <p>【1】编写pom.xml</p> <div class="language-xml extra-class"><pre class="language-xml"><code><span class="token prolog">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">&quot;</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">&quot;</span></span>
+  <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">&gt;</span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.itheima.shiro<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>shiro-day01-07web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.0-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>packaging</span><span class="token punctuation">&gt;</span></span>war<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>packaging</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span>shiro-day01-07web Maven Webapp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">&gt;</span></span>
+  <span class="token comment">&lt;!-- FIXME change it to the project's website --&gt;</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url</span><span class="token punctuation">&gt;</span></span>http://www.example.com<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>commons-logging<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>commons-logging<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.1.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.shiro<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>shiro-core<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.3.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.shiro<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>shiro-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.3.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.11<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>javax.servlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>javax.servlet-api<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.0.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>provided<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>jstl<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>jstl<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>taglibs<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>standard<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.1.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">&gt;</span></span>
+      <span class="token comment">&lt;!-- tomcat7插件,命令： mvn tomcat7:run -DskipTests --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.tomcat.maven<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>tomcat7-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>uriEncoding</span><span class="token punctuation">&gt;</span></span>utf-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>uriEncoding</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">&gt;</span></span>8080<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span><span class="token punctuation">&gt;</span></span>/platform<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>path</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">&gt;</span></span>
+
+      <span class="token comment">&lt;!-- compiler插件, 设定JDK版本 --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.maven.plugins<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>maven-compiler-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span><span class="token punctuation">&gt;</span></span>8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>source</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>target</span><span class="token punctuation">&gt;</span></span>8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>target</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>showWarnings</span><span class="token punctuation">&gt;</span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>showWarnings</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>【2】编写shiro.ini文件</p> <div class="language-ini extra-class"><pre class="language-ini"><code><span class="token comment">#声明自定义的realm，且为安全管理器指定realms</span>
+<span class="token selector">[main]</span>
+<span class="token constant">definitionRealm</span><span class="token attr-value"><span class="token punctuation">=</span>com.itheima.shiro.realm.DefinitionRealm</span>
+<span class="token constant">securityManager.realms</span><span class="token attr-value"><span class="token punctuation">=</span>$definitionRealm</span>
+<span class="token comment">#用户退出后跳转指定JSP页面</span>
+<span class="token constant">logout.redirectUrl</span><span class="token attr-value"><span class="token punctuation">=</span>/login.jsp</span>
+<span class="token comment">#若没有登录，则被authc过滤器重定向到login.jsp页面</span>
+<span class="token constant">authc.loginUrl</span> <span class="token attr-value"><span class="token punctuation">=</span> /login.jsp</span>
+<span class="token selector">[urls]</span>
+<span class="token constant">/login</span><span class="token attr-value"><span class="token punctuation">=</span>anon</span>
+<span class="token comment">#发送/home请求需要先登录</span>
+<span class="token constant">/home</span><span class="token attr-value"><span class="token punctuation">=</span> authc</span>
+<span class="token comment">#发送/order/list请求需要先登录</span>
+<span class="token constant">/order-list</span> <span class="token attr-value"><span class="token punctuation">=</span> roles[admin]</span>
+<span class="token comment">#提交代码需要order:add权限</span>
+<span class="token constant">/order-add</span> <span class="token attr-value"><span class="token punctuation">=</span> perms[&quot;order:add&quot;]</span>
+<span class="token comment">#更新代码需要order:del权限</span>
+<span class="token constant">/order-del</span> <span class="token attr-value"><span class="token punctuation">=</span> perms[&quot;order:del&quot;]</span>
+<span class="token comment">#发送退出请求则用退出过滤器</span>
+<span class="token constant">/logout</span> <span class="token attr-value"><span class="token punctuation">=</span> logout</span>
+</code></pre></div><p>【3】编写LoginService</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">/**
+ * @Description：登录服务
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">LoginService</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * @Description 登录方法
+     * @param token 登录对象
+     * @return
+     */</span>
+    <span class="token keyword">boolean</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token class-name">UsernamePasswordToken</span> token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * @Description 登出方法
+     */</span>
+    <span class="token keyword">void</span> <span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre></div><div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">/**
+ * @Description：登录服务
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LoginServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">LoginService</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token class-name">UsernamePasswordToken</span> token<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Subject</span> subject <span class="token operator">=</span> <span class="token class-name">SecurityUtils</span><span class="token punctuation">.</span><span class="token function">getSubject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            subject<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> subject<span class="token punctuation">.</span><span class="token function">isAuthenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Subject</span> subject <span class="token operator">=</span> <span class="token class-name">SecurityUtils</span><span class="token punctuation">.</span><span class="token function">getSubject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        subject<span class="token punctuation">.</span><span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>【4】编写SecurityServiceImpl</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">/**
+ * @Description：权限服务层
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SecurityServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">SecurityService</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token function">findPasswordByLoginName</span><span class="token punctuation">(</span><span class="token class-name">String</span> loginName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">DigestsUtil</span><span class="token punctuation">.</span><span class="token function">entryptPassword</span><span class="token punctuation">(</span><span class="token string">&quot;123&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> map<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> <span class="token function">findRoleByloginName</span><span class="token punctuation">(</span><span class="token class-name">String</span> loginName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">&quot;admin&quot;</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>loginName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">&quot;admin&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">&quot;dev&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> list<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span>  <span class="token function">findPermissionByloginName</span><span class="token punctuation">(</span><span class="token class-name">String</span> loginName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">&quot;jay&quot;</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>loginName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">&quot;order:list&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">&quot;order:add&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">&quot;order:del&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> list<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre></div><p>【5】添加web层内容
+【5.1】LoginServlet</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">/**
+ * @Description：登录方法
+ */</span>
+<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span>urlPatterns <span class="token operator">=</span> <span class="token string">&quot;/login&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LoginServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token function">doPost</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//获取输入的帐号密码</span>
+        <span class="token class-name">String</span> username <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">&quot;loginName&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> password <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">&quot;password&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//封装用户数据，成为Shiro能认识的token标识</span>
+        <span class="token class-name">UsernamePasswordToken</span> token <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UsernamePasswordToken</span><span class="token punctuation">(</span>username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">LoginService</span> loginService <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LoginServiceImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//将封装用户信息的token进行验证</span>
+        <span class="token keyword">boolean</span> isLoginSuccess <span class="token operator">=</span> loginService<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isLoginSuccess<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">//重定向到未登录成功页面</span>
+            resp<span class="token punctuation">.</span><span class="token function">sendRedirect</span><span class="token punctuation">(</span><span class="token string">&quot;login.jsp&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        req<span class="token punctuation">.</span><span class="token function">getRequestDispatcher</span><span class="token punctuation">(</span><span class="token string">&quot;/home&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><p>【5.2】HomeServlet</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">/**
+ * @Description：系统home页面
+ */</span>
+<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span>urlPatterns <span class="token operator">=</span> <span class="token string">&quot;/home&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HomeServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token function">doPost</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        req<span class="token punctuation">.</span><span class="token function">getRequestDispatcher</span><span class="token punctuation">(</span><span class="token string">&quot;home.jsp&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>【5.3】OrderAddServlet</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">/**
+ * @Description：添加页码
+ */</span>
+<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span>urlPatterns <span class="token operator">=</span> <span class="token string">&quot;/order-add&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OrderAddServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token function">doPost</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        req<span class="token punctuation">.</span><span class="token function">getRequestDispatcher</span><span class="token punctuation">(</span><span class="token string">&quot;order-add.jsp&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><p>【5.4】OrderListServlet</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">/**
+ * @Description：订单列表
+ */</span>
+<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span>urlPatterns <span class="token operator">=</span> <span class="token string">&quot;/order-list&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OrderListServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token function">doPost</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        req<span class="token punctuation">.</span><span class="token function">getRequestDispatcher</span><span class="token punctuation">(</span><span class="token string">&quot;order-list.jsp&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>【5.5】LogoutServlet</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">/**
+ * @Description：登出
+ */</span>
+<span class="token annotation punctuation">@WebServlet</span><span class="token punctuation">(</span>urlPatterns <span class="token operator">=</span> <span class="token string">&quot;/logout&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogoutServlet</span> <span class="token keyword">extends</span> <span class="token class-name">HttpServlet</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doGet</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token function">doPost</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> resp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">doPost</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> req<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> resp<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">ServletException</span><span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token class-name">LoginService</span> loginService <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LoginServiceImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        loginService<span class="token punctuation">.</span><span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><p>【6】添加JSP</p> <p>login.jsp登录页面</p> <h3 id="_4、web项目授权"><a href="#_4、web项目授权" class="header-anchor">#</a> 4、web项目授权</h3> <p>前面我们学习了基于ini文件配置方式来完成授权，下面我们来看下其他2种方式的授权
+【1】基于代码</p> <p>【1.1】登录相关</p> <table><thead><tr><th>Subject 登录相关方法</th> <th>描述</th></tr></thead> <tbody><tr><td>isAuthenticated()</td> <td>返回true 表示已经登录，否则返回false。</td></tr></tbody></table> <p>【1.2】角色相关</p> <table><thead><tr><th>Subject 角色相关方法</th> <th>描述</th></tr></thead> <tbody><tr><td>hasRole(String roleName)</td> <td>返回true 如果Subject 被分配了指定的角色，否则返回false。</td></tr> <tr><td>hasRoles(List&lt;\String&gt; roleNames)</td> <td>返回true 如果Subject 被分配了所有指定的角色，否则返回false。</td></tr> <tr><td>hasAllRoles(Collection&lt;\String&gt;roleNames)</td> <td>返回一个与方法参数中目录一致的hasRole 结果的集合。有性能的提高如果许多角色需要执行检查（例如，当自定义一个复杂的视图）。</td></tr> <tr><td>checkRole(String roleName)</td> <td>安静地返回，如果Subject 被分配了指定的角色，不然的话就抛出AuthorizationException。</td></tr> <tr><td>checkRoles(Collection&lt;\String&gt;roleNames)</td> <td>安静地返回，如果Subject 被分配了所有的指定的角色，不然的话就抛出AuthorizationException。</td></tr> <tr><td>checkRoles(String… roleNames)</td> <td>与上面的checkRoles 方法的效果相同，但允许Java5 的var-args 类型的参数</td></tr></tbody></table> <p>【1.3】资源相关</p> <table><thead><tr><th>Subject 资源相关方法</th> <th>描述</th></tr></thead> <tbody><tr><td>isPermitted(Permission p)</td> <td>返回true 如果该Subject 被允许执行某动作或访问被权限实例指定的资源，否则返回false</td></tr> <tr><td>isPermitted(List&lt;\Permission&gt; perms)</td> <td>返回一个与方法参数中目录一致的isPermitted 结果的集合。</td></tr> <tr><td>isPermittedAll(Collection&lt;\Permission&gt;perms)</td> <td>返回true 如果该Subject 被允许所有指定的权限，否则返回false有性能的提高如果需要执行许多检查（例如，当自定义一个复杂的视图）</td></tr> <tr><td>isPermitted(String perm)</td> <td>返回true 如果该Subject 被允许执行某动作或访问被字符串权限指定的资源，否则返回false。</td></tr> <tr><td>isPermitted(String…perms)</td> <td>返回一个与方法参数中目录一致的isPermitted 结果的数组。有性能的提高如果许多字符串权限检查需要被执行（例如，当自定义一个复杂的视图）。</td></tr> <tr><td>isPermittedAll(String…perms)</td> <td>返回true 如果该Subject 被允许所有指定的字符串权限，否则返回false。</td></tr> <tr><td>checkPermission(Permission p)</td> <td>安静地返回，如果Subject 被允许执行某动作或访问被特定的权限实例指定的资源，不然的话就抛出AuthorizationException 异常。</td></tr> <tr><td>checkPermission(String perm)</td> <td>安静地返回，如果Subject 被允许执行某动作或访问被特定的字符串权限指定的资源，不然的话就抛出AuthorizationException 异常。</td></tr> <tr><td>checkPermissions(Collection&lt;\Permission&gt; perms)</td> <td>安静地返回，如果Subject 被允许所有的权限，不然的话就抛出AuthorizationException 异常。有性能的提高如果需要执行许多检查（例如，当自定义一个复杂的视图）</td></tr> <tr><td>checkPermissions(String… perms)</td> <td>和上面的checkPermissions 方法效果相同，但是使用的是基于字符串的权限。</td></tr></tbody></table> <p>【2】基于Jsp标签
+Shiro提供了一套JSP标签库来实现页面级的授权控制， 在使用Shiro标签库前，首先需要在JSP引入shiro标签：</p> <div class="language-jsp extra-class"><pre class="language-text"><code>&lt;%@ taglib prefix=&quot;shiro&quot; uri=&quot;http://shiro.apache.org/tags&quot; %&gt; 
+</code></pre></div><p>【2.2】相关标签</p> <table><thead><tr><th>标签</th> <th>说明</th></tr></thead> <tbody><tr><td>&lt; shiro:guest &gt;</td> <td>验证当前用户是否为“访客”，即未认证（包含未记住）的用户</td></tr> <tr><td>&lt; shiro:user &gt;</td> <td>认证通过或已记住的用户</td></tr> <tr><td>&lt; shiro:authenticated &gt;</td> <td>已认证通过的用户。不包含已记住的用户，这是与user标签的区别所在</td></tr> <tr><td>&lt; shiro:notAuthenticated &gt;</td> <td>未认证通过用户。与guest标签的区别是，该标签包含已记住用户</td></tr> <tr><td>&lt; shiro:principal /&gt;</td> <td>输出当前用户信息，通常为登录帐号信息</td></tr> <tr><td>&lt; shiro:hasRole name=&quot;角色&quot;&gt;</td> <td>验证当前用户是否属于该角色</td></tr> <tr><td>&lt; shiro:lacksRole name=&quot;角色&quot;&gt;</td> <td>与hasRole标签逻辑相反，当用户不属于该角色时验证通过</td></tr> <tr><td>&lt; shiro:hasAnyRoles name=&quot;a,b&quot;&gt;</td> <td>验证当前用户是否属于以下任意一个角色</td></tr> <tr><td>&lt;shiro:hasPermission name=“资源”&gt;</td> <td>验证当前用户是否拥有制定权限</td></tr> <tr><td>&lt;shiro:lacksPermission name=&quot;资源&quot;&gt;</td> <td>与permission标签逻辑相反，当前用户没有制定权限时，验证通过</td></tr></tbody></table></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/java-about/06app/01shiro/01.html" class="prev">
+        01 shiro
+      </a></span> <span class="next"><a href="/java-about/06app/01shiro/03.html">
+        03 shiro 与 springboot
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.8ff7ee33.js" defer></script><script src="/assets/js/2.5286b244.js" defer></script><script src="/assets/js/25.5344faf6.js" defer></script>
+  </body>
+</html>
