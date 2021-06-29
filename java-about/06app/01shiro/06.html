@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>shiro与jwt前后端分离 | clxmm</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="clxmm">
+    
+    <link rel="preload" href="/assets/css/0.styles.35bcedcf.css" as="style"><link rel="preload" href="/assets/js/app.8b7a8431.js" as="script"><link rel="preload" href="/assets/js/2.5286b244.js" as="script"><link rel="preload" href="/assets/js/30.9a5741cb.js" as="script"><link rel="prefetch" href="/assets/js/10.1770591f.js"><link rel="prefetch" href="/assets/js/11.b04e85b9.js"><link rel="prefetch" href="/assets/js/12.384cb7e1.js"><link rel="prefetch" href="/assets/js/13.d2118b2a.js"><link rel="prefetch" href="/assets/js/14.e855382e.js"><link rel="prefetch" href="/assets/js/15.8b0b66f1.js"><link rel="prefetch" href="/assets/js/16.5397e314.js"><link rel="prefetch" href="/assets/js/17.77748871.js"><link rel="prefetch" href="/assets/js/18.dd16cfc0.js"><link rel="prefetch" href="/assets/js/19.05b49fdf.js"><link rel="prefetch" href="/assets/js/20.46468263.js"><link rel="prefetch" href="/assets/js/21.a5a9753a.js"><link rel="prefetch" href="/assets/js/22.0e2efc5d.js"><link rel="prefetch" href="/assets/js/23.c7b4431f.js"><link rel="prefetch" href="/assets/js/24.9038389c.js"><link rel="prefetch" href="/assets/js/25.5c30b3a0.js"><link rel="prefetch" href="/assets/js/26.7e52d09f.js"><link rel="prefetch" href="/assets/js/27.7961fda8.js"><link rel="prefetch" href="/assets/js/28.d2f54eaa.js"><link rel="prefetch" href="/assets/js/29.53911d87.js"><link rel="prefetch" href="/assets/js/3.236de3dc.js"><link rel="prefetch" href="/assets/js/31.1825bee7.js"><link rel="prefetch" href="/assets/js/32.52a6adba.js"><link rel="prefetch" href="/assets/js/33.c60594e0.js"><link rel="prefetch" href="/assets/js/34.a80e1d9f.js"><link rel="prefetch" href="/assets/js/35.de166674.js"><link rel="prefetch" href="/assets/js/36.9a20ebc0.js"><link rel="prefetch" href="/assets/js/37.c4d8ab43.js"><link rel="prefetch" href="/assets/js/38.01394106.js"><link rel="prefetch" href="/assets/js/39.178ff82b.js"><link rel="prefetch" href="/assets/js/4.9b1d0096.js"><link rel="prefetch" href="/assets/js/40.7df74b8c.js"><link rel="prefetch" href="/assets/js/41.60838fa1.js"><link rel="prefetch" href="/assets/js/42.c87c62f7.js"><link rel="prefetch" href="/assets/js/43.29847e8c.js"><link rel="prefetch" href="/assets/js/44.95d21ee7.js"><link rel="prefetch" href="/assets/js/45.363fdf1b.js"><link rel="prefetch" href="/assets/js/46.bc9f53f0.js"><link rel="prefetch" href="/assets/js/47.71275c14.js"><link rel="prefetch" href="/assets/js/48.832dbe72.js"><link rel="prefetch" href="/assets/js/49.ca2fc950.js"><link rel="prefetch" href="/assets/js/5.7dc46c13.js"><link rel="prefetch" href="/assets/js/50.76e582a6.js"><link rel="prefetch" href="/assets/js/51.1f205e15.js"><link rel="prefetch" href="/assets/js/52.3c7d8d04.js"><link rel="prefetch" href="/assets/js/53.4d107951.js"><link rel="prefetch" href="/assets/js/54.e2ffb9a7.js"><link rel="prefetch" href="/assets/js/55.ac63ae54.js"><link rel="prefetch" href="/assets/js/56.c3c9a191.js"><link rel="prefetch" href="/assets/js/57.e31945e7.js"><link rel="prefetch" href="/assets/js/58.dd8bb1c9.js"><link rel="prefetch" href="/assets/js/59.eed6432f.js"><link rel="prefetch" href="/assets/js/6.78397fcc.js"><link rel="prefetch" href="/assets/js/60.cfa47d83.js"><link rel="prefetch" href="/assets/js/61.78c9f611.js"><link rel="prefetch" href="/assets/js/62.1572c47a.js"><link rel="prefetch" href="/assets/js/63.a02debc8.js"><link rel="prefetch" href="/assets/js/64.984e23c5.js"><link rel="prefetch" href="/assets/js/65.31da08bf.js"><link rel="prefetch" href="/assets/js/66.e0390271.js"><link rel="prefetch" href="/assets/js/67.baa297f1.js"><link rel="prefetch" href="/assets/js/68.f36c5e76.js"><link rel="prefetch" href="/assets/js/69.a6ef2a7b.js"><link rel="prefetch" href="/assets/js/7.b51c7eac.js"><link rel="prefetch" href="/assets/js/8.58739c74.js"><link rel="prefetch" href="/assets/js/9.15fe2da7.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.35bcedcf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">clxmm</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/01shiro/01.html" class="nav-link">
+  shiro
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/02security/01.html" class="nav-link">
+  security
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/03javaee/01.html" class="nav-link">
+  javaee
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web" class="dropdown-title"><span class="title">web</span> <span class="arrow down"></span></button> <button type="button" aria-label="web" class="mobile-dropdown-title"><span class="title">web</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/web/01web/01web01.html" class="nav-link">
+  web基础
+</a></li><li class="dropdown-item"><!----> <a href="/web/02js/01js.html" class="nav-link">
+  js基础
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java 基础" class="dropdown-title"><span class="title">java 基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="java 基础" class="mobile-dropdown-title"><span class="title">java 基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/07javabase/01flux/01flux.html" class="nav-link">
+  java 基础
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/07javabase/02base/01.html" class="nav-link">
+  java 基础1
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/01shiro/01.html" class="nav-link">
+  shiro
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/02security/01.html" class="nav-link">
+  security
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/03javaee/01.html" class="nav-link">
+  javaee
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web" class="dropdown-title"><span class="title">web</span> <span class="arrow down"></span></button> <button type="button" aria-label="web" class="mobile-dropdown-title"><span class="title">web</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/web/01web/01web01.html" class="nav-link">
+  web基础
+</a></li><li class="dropdown-item"><!----> <a href="/web/02js/01js.html" class="nav-link">
+  js基础
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java 基础" class="dropdown-title"><span class="title">java 基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="java 基础" class="mobile-dropdown-title"><span class="title">java 基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/07javabase/01flux/01flux.html" class="nav-link">
+  java 基础
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/07javabase/02base/01.html" class="nav-link">
+  java 基础1
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>shiro</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java-about/06app/01shiro/01.html" class="sidebar-link">01 shiro</a></li><li><a href="/java-about/06app/01shiro/02.html" class="sidebar-link">02 web集成shiro</a></li><li><a href="/java-about/06app/01shiro/03.html" class="sidebar-link">03 shiro 与 springboot</a></li><li><a href="/java-about/06app/01shiro/04.html" class="sidebar-link">04 shiro 的Realm缓存机制</a></li><li><a href="/java-about/06app/01shiro/05.html" class="sidebar-link">05 实现分布式会话SessionManager</a></li><li><a href="/java-about/06app/01shiro/06.html" aria-current="page" class="active sidebar-link">shiro与jwt前后端分离</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#前后端分离会话问题" class="sidebar-link">前后端分离会话问题</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#_2、jwt概述" class="sidebar-link">2、JWT概述</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#_3、集成jwt" class="sidebar-link">3、集成JWT</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#【1】jwtproperties" class="sidebar-link">【1】JwtProperties</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#【2】jwttokenmanager" class="sidebar-link">【2】JwtTokenManager</a></li></ul></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#_4、重写defaultwebsessionmanager" class="sidebar-link">4、重写DefaultWebSessionManager</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#_5、重写默认过滤器" class="sidebar-link">5、重写默认过滤器</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#【1】jwtauthcfilter" class="sidebar-link">【1】JwtAuthcFilter</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#【2】jwtpermsfilter" class="sidebar-link">【2】JwtPermsFilter</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#【3】jwtrolesfilter" class="sidebar-link">【3】JwtRolesFilter</a></li></ul></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#_6、重写shiroconfig" class="sidebar-link">6、重写ShiroConfig</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/01shiro/06.html#_7、业务代码" class="sidebar-link">7、业务代码</a></li></ul></li><li><a href="/java-about/06app/01shiro/07.html" class="sidebar-link">07 分布式统一权限系统</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="前后端分离会话问题"><a href="#前后端分离会话问题" class="header-anchor">#</a> 前后端分离会话问题</h2> <p>【1】问题追踪
+前面我们实现分布式的会话缓存，但是我们发现此功能的实现是基于浏览的cookie机制，也就是说用户禁用cookie后，我们的系统会就会产生会话不同的问题
+【2】解决方案
+我们的前端可能是web、Android、ios等应用，同时我们每一个接口都提供了无状态的应答方式，这里我们提供了基于JWT的token生成方案</p> <p>1、用户登陆之后，获得此时会话的sessionId,使用JWT根据sessionId颁发签名并设置过期时间(与session过期时间相同)返回token</p> <p>2、将token保存到客户端本地，并且每次发送请求时都在header上携带JwtToken</p> <p>3、ShiroSessionManager继承DefaultWebSessionManager，重写getSessionId方法，从header上检测是否携带JwtToken，如果携带，则进行解码JwtToken，使用JwtToken中的jti作为SessionId。</p> <p>4、重写shiro的默认过滤器，使其支持jwtToken有效期校验、及对JSON的返回支持
+JwtAuthcFilter:实现是否需要登录的过滤，拒绝时如果header上携带JwtToken,则返回对应json
+JwtPermsFilter:实现是否有对应资源的过滤，拒绝时如果header上携带JwtToken,则返回对应json
+JwtRolesFilter:实现是否有对应角色的过滤，拒绝时如果header上携带JwtToken,则返回对应json</p> <h2 id="_2、jwt概述"><a href="#_2、jwt概述" class="header-anchor">#</a> 2、JWT概述</h2> <p>JWT（JSON WEB TOKEN）：JSON网络令牌，JWT是一个轻便的安全跨平台传输格式，定义了一个紧凑的自包含的方式在不同实体之间安全传输信息（JSON格式）。它是在Web环境下两个实体之间传输数据的一项标准。实际上传输的就是一个字符串。</p> <ul><li><p>广义上：JWT是一个标准的名称；</p></li> <li><p>狭义上：JWT指的就是用来传递的那个token字符串</p></li></ul> <p>JWT由三部分构成：header（头部）、payload（载荷）和signature（签名）。</p> <ol><li><p>Header</p> <p>存储两个变量</p> <ol><li>秘钥（可以用来比对）</li> <li>算法（也就是下面将Header和payload加密成Signature）</li></ol></li> <li><p>payload</p> <p>存储很多东西，基础信息有如下几个</p> <ol><li>签发人，也就是这个“令牌”归属于哪个用户。一般是<code>userId</code></li> <li>创建时间，也就是这个令牌是什么时候创建的</li> <li>失效时间，也就是这个令牌什么时候失效(session的失效时间)</li> <li>唯一标识，一般可以使用算法生成一个唯一标识（jti==&gt;sessionId）</li></ol></li> <li><p>Signature</p> <p>这个是上面两个经过Header中的算法加密生成的，用于比对信息，防止篡改Header和payload</p></li></ol> <p>然后将这三个部分的信息经过加密生成一个<code>JwtToken</code>的字符串，发送给客户端，客户端保存在本地。当客户端发起请求的时候携带这个到服务端(可以是在<code>cookie</code>，可以是在<code>header</code>)，在服务端进行验证，我们需要解密对于的payload的内容</p> <h2 id="_3、集成jwt"><a href="#_3、集成jwt" class="header-anchor">#</a> 3、集成JWT</h2> <h3 id="【1】jwtproperties"><a href="#【1】jwtproperties" class="header-anchor">#</a> 【1】JwtProperties</h3> <div class="language- extra-class"><pre><code>用于支持yaml文件配置的配置类
+</code></pre></div><div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">&quot;clxmm.jwt&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JwtProperties</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * @Description 签名密码
+     */</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> base64EncodedSecretKey<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">clxmm</span><span class="token punctuation">:</span>
+  <span class="token key atrule">jwt</span><span class="token punctuation">:</span>
+    <span class="token key atrule">base64-encoded-secret-key</span><span class="token punctuation">:</span> qazwsx1234567890
+</code></pre></div><h3 id="【2】jwttokenmanager"><a href="#【2】jwttokenmanager" class="header-anchor">#</a> 【2】JwtTokenManager</h3> <p>负责令牌的颁发、解析、校验</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>core<span class="token punctuation">.</span>impl</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>auth0<span class="token punctuation">.</span>jwt<span class="token punctuation">.</span></span>JWT<span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>auth0<span class="token punctuation">.</span>jwt<span class="token punctuation">.</span></span><span class="token class-name">JWTVerifier</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>auth0<span class="token punctuation">.</span>jwt<span class="token punctuation">.</span>algorithms<span class="token punctuation">.</span></span><span class="token class-name">Algorithm</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">io<span class="token punctuation">.</span>jsonwebtoken<span class="token punctuation">.</span></span><span class="token class-name">Claims</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">io<span class="token punctuation">.</span>jsonwebtoken<span class="token punctuation">.</span></span><span class="token class-name">JwtBuilder</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">io<span class="token punctuation">.</span>jsonwebtoken<span class="token punctuation">.</span></span><span class="token class-name">Jwts</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">io<span class="token punctuation">.</span>jsonwebtoken<span class="token punctuation">.</span></span><span class="token class-name">SignatureAlgorithm</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>config<span class="token punctuation">.</span></span><span class="token class-name">JwtProperties</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">EmptyUtil</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">EncodesUtil</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>context<span class="token punctuation">.</span>properties<span class="token punctuation">.</span></span><span class="token class-name">EnableConfigurationProperties</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Service</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Date</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">HashMap</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Map</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @author clxmm
+ * @Description 自定义jwttoken管理者
+ * @create 2021-05-31 8:37 下午
+ */</span>
+<span class="token annotation punctuation">@Service</span><span class="token punctuation">(</span><span class="token string">&quot;jwtTokenManager&quot;</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@EnableConfigurationProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token class-name">JwtProperties</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JwtTokenManager</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token class-name">JwtProperties</span> jwtProperties<span class="token punctuation">;</span>
+
+
+    <span class="token comment">/**
+     * @param iss       签发人
+     * @param ttlMillis 有效时间
+     * @param claims    jwt中存储的一些非隐私信息
+     * @return
+     * @Description 签发令牌
+     * jwt字符串包括三个部分
+     * 1. header
+     * -当前字符串的类型，一般都是“JWT”
+     * -哪种算法加密，“HS256”或者其他的加密算法
+     * 所以一般都是固定的，没有什么变化
+     * 2. payload
+     * 一般有四个最常见的标准字段（下面有）
+     * iat：签发时间，也就是这个jwt什么时候生成的
+     * jti：JWT的唯一标识
+     * iss：签发人，一般都是username或者userId
+     * exp：过期时间
+     */</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token class-name">IssuedToken</span><span class="token punctuation">(</span><span class="token class-name">String</span> iss<span class="token punctuation">,</span> <span class="token keyword">long</span> ttlMillis<span class="token punctuation">,</span> <span class="token class-name">String</span> sessionId<span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> claims<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">EmptyUtil</span><span class="token punctuation">.</span><span class="token function">isNullOrEmpty</span><span class="token punctuation">(</span>claims<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            claims <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// 获取当前时间</span>
+        <span class="token keyword">long</span> timeMillis <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 获取加密签名</span>
+        <span class="token class-name">String</span> hexEncodedSecretKey <span class="token operator">=</span> jwtProperties<span class="token punctuation">.</span><span class="token function">getBase64EncodedSecretKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> encodeHex <span class="token operator">=</span> <span class="token class-name">EncodesUtil</span><span class="token punctuation">.</span><span class="token function">encodeHex</span><span class="token punctuation">(</span>hexEncodedSecretKey<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//构建令牌</span>
+        <span class="token class-name">JwtBuilder</span> jwtBuilder <span class="token operator">=</span> <span class="token class-name">Jwts</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">setClaims</span><span class="token punctuation">(</span>claims<span class="token punctuation">)</span>
+                <span class="token comment">//2. 这个是JWT的唯一标识，一般设置成唯一的，这个方法可以生成唯一标识,此时存储的为sessionId,登录成功后回写</span>
+                <span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>sessionId<span class="token punctuation">)</span>
+                <span class="token comment">// //1. 这个地方就是以毫秒为单位，换算当前系统时间生成的iat</span>
+                <span class="token punctuation">.</span><span class="token function">setIssuedAt</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>timeMillis<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token comment">//3. 签发人，也就是JWT是给谁的（逻辑上一般都是username或者userId）</span>
+                <span class="token punctuation">.</span><span class="token function">setSubject</span><span class="token punctuation">(</span>iss<span class="token punctuation">)</span>
+                <span class="token comment">//这个地方是生成jwt使用的算法和秘钥</span>
+                <span class="token punctuation">.</span><span class="token function">signWith</span><span class="token punctuation">(</span><span class="token class-name">SignatureAlgorithm</span><span class="token punctuation">.</span>HS256<span class="token punctuation">,</span> encodeHex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ttlMillis <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">long</span> expMillis <span class="token operator">=</span> timeMillis <span class="token operator">+</span> ttlMillis<span class="token punctuation">;</span>
+            <span class="token comment">//4. 过期时间，这个也是使用毫秒生成的，使用当前时间+前面传入的持续时间生成</span>
+            <span class="token class-name">Date</span> exp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>expMillis<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            jwtBuilder<span class="token punctuation">.</span><span class="token function">setExpiration</span><span class="token punctuation">(</span>exp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> jwtBuilder<span class="token punctuation">.</span><span class="token function">compact</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment">/**
+     * @param jwtToken 令牌
+     * @return
+     * @Description 解析令牌
+     */</span>
+    <span class="token keyword">public</span> <span class="token class-name">Claims</span> <span class="token function">decodeToken</span><span class="token punctuation">(</span><span class="token class-name">String</span> jwtToken<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 获取加密签名</span>
+        <span class="token class-name">String</span> base64EncodedSecretKey <span class="token operator">=</span> <span class="token class-name">EncodesUtil</span><span class="token punctuation">.</span><span class="token function">encodeHex</span><span class="token punctuation">(</span>jwtProperties<span class="token punctuation">.</span><span class="token function">getBase64EncodedSecretKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 带着密码去解析字符串</span>
+        <span class="token class-name">Claims</span> claims <span class="token operator">=</span> <span class="token class-name">Jwts</span><span class="token punctuation">.</span><span class="token function">parser</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">setSigningKey</span><span class="token punctuation">(</span>base64EncodedSecretKey<span class="token punctuation">)</span>
+                <span class="token comment">// 设置签名的秘钥</span>
+                <span class="token punctuation">.</span><span class="token function">parseClaimsJws</span><span class="token punctuation">(</span>jwtToken<span class="token punctuation">)</span>
+                <span class="token comment">// 设置需要解析的 jwt</span>
+                <span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> claims<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment">/**
+     * @Description 判断令牌是否合法,校验令牌:1、头部信息和荷载信息是否被篡改 2、校验令牌是否过期
+     * @param jwtToken 令牌
+     * @return
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isVerifyToken</span><span class="token punctuation">(</span><span class="token class-name">String</span> jwtToken<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token class-name">String</span> base64EncodedSecretKey <span class="token operator">=</span> <span class="token class-name">EncodesUtil</span><span class="token punctuation">.</span><span class="token function">encodeHex</span><span class="token punctuation">(</span>jwtProperties<span class="token punctuation">.</span><span class="token function">getBase64EncodedSecretKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//这个是官方的校验规则，这里只写了一个”校验算法“，可以自己加</span>
+        <span class="token class-name">Algorithm</span> algorithm <span class="token operator">=</span> <span class="token class-name">Algorithm</span><span class="token punctuation">.</span><span class="token function">HMAC256</span><span class="token punctuation">(</span><span class="token class-name">EncodesUtil</span><span class="token punctuation">.</span><span class="token function">decodeBase64</span><span class="token punctuation">(</span>base64EncodedSecretKey<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">JWTVerifier</span> verifier <span class="token operator">=</span> JWT<span class="token punctuation">.</span><span class="token function">require</span><span class="token punctuation">(</span>algorithm<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 校验不通过会抛出异常</span>
+        verifier<span class="token punctuation">.</span><span class="token function">verify</span><span class="token punctuation">(</span>jwtToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//判断合法的标准：1. 头部和荷载部分没有篡改过。2. 没有过期</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><h2 id="_4、重写defaultwebsessionmanager"><a href="#_4、重写defaultwebsessionmanager" class="header-anchor">#</a> 4、重写DefaultWebSessionManager</h2> <p>ShiroSessionManager主要是添加jwtToken的jti作为会话的唯一标识</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>core<span class="token punctuation">.</span>impl</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">io<span class="token punctuation">.</span>jsonwebtoken<span class="token punctuation">.</span></span><span class="token class-name">Claims</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">ShiroHttpServletRequest</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>web<span class="token punctuation">.</span>session<span class="token punctuation">.</span>mgt<span class="token punctuation">.</span></span><span class="token class-name">DefaultWebSessionManager</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>web<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">WebUtils</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">EmptyUtil</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">ServletRequest</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">ServletResponse</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">Serializable</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @author clxmm
+ * @Description 自定义会话管理器
+ * @create 2021-06-01 7:54 下午
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ShiroSessionManager</span> <span class="token keyword">extends</span> <span class="token class-name">DefaultWebSessionManager</span> <span class="token punctuation">{</span>
+
+
+    <span class="token comment">/**
+     * @deprecated 从请求中获取sessionId的key
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> AUTHORIZATION <span class="token operator">=</span> <span class="token string">&quot;jwtToken&quot;</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * @deprecated 自定义注入的资源类型的名称
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> REFERENCED_SESSION_ID_SOURCE <span class="token operator">=</span> <span class="token string">&quot;Stateless request&quot;</span><span class="token punctuation">;</span>
+
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token class-name">JwtTokenManager</span> jwtTokenManager<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token class-name">Serializable</span> <span class="token function">getSessionId</span><span class="token punctuation">(</span><span class="token class-name">ServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">ServletResponse</span> response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 判断request请求中是否带有jwtToken的key</span>
+        <span class="token class-name">String</span> jwtToken <span class="token operator">=</span> <span class="token class-name">WebUtils</span><span class="token punctuation">.</span><span class="token function">toHttp</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span>AUTHORIZATION<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">EmptyUtil</span><span class="token punctuation">.</span><span class="token function">isNullOrEmpty</span><span class="token punctuation">(</span>jwtToken<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 如果没有走默认的cookie机制</span>
+            <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">getSessionId</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//如果请求头中有 authToken 则其值为jwtToken，然后解析出会话session</span>
+
+        request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token class-name">ShiroHttpServletRequest</span><span class="token punctuation">.</span>REFERENCED_SESSION_ID_SOURCE<span class="token punctuation">,</span> REFERENCED_SESSION_ID_SOURCE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Claims</span> decode <span class="token operator">=</span> jwtTokenManager<span class="token punctuation">.</span><span class="token function">decodeToken</span><span class="token punctuation">(</span>jwtToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> id <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span> decode<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;jti&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token class-name">ShiroHttpServletRequest</span><span class="token punctuation">.</span>REFERENCED_SESSION_ID<span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token class-name">ShiroHttpServletRequest</span><span class="token punctuation">.</span>REFERENCED_SESSION_ID_IS_VALID<span class="token punctuation">,</span> <span class="token class-name">Boolean</span><span class="token punctuation">.</span>TRUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><h2 id="_5、重写默认过滤器"><a href="#_5、重写默认过滤器" class="header-anchor">#</a> 5、重写默认过滤器</h2> <p>BaseResponse返回统一json的对象</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>core<span class="token punctuation">.</span>base</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Data</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">ToString</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @author clxmm
+ * @Description 基础返回封装
+ * @create 2021-06-01 8:13 下午
+ */</span>
+<span class="token annotation punctuation">@Data</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BaseResponse</span>  <span class="token keyword">extends</span> <span class="token class-name">ToString</span> <span class="token punctuation">{</span>
+
+
+    <span class="token keyword">private</span> <span class="token class-name">Integer</span> code <span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">String</span> msg <span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">String</span> date<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">BaseResponse</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> code<span class="token punctuation">,</span> <span class="token class-name">String</span> msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>msg <span class="token operator">=</span> msg<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">BaseResponse</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> code<span class="token punctuation">,</span> <span class="token class-name">String</span> msg<span class="token punctuation">,</span> <span class="token class-name">String</span> date<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>msg <span class="token operator">=</span> msg<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>date <span class="token operator">=</span> date<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="【1】jwtauthcfilter"><a href="#【1】jwtauthcfilter" class="header-anchor">#</a> 【1】JwtAuthcFilter</h3> <p>使用wtTokenManager.isVerifyToken(jwtToken)校验颁发jwtToken是否合法，同时在拒绝的时候返回对应的json数据格式</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>filter</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>fastjson<span class="token punctuation">.</span></span><span class="token class-name">JSONObject</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>lang3<span class="token punctuation">.</span></span><span class="token class-name">StringUtils</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>web<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>authc<span class="token punctuation">.</span></span><span class="token class-name">FormAuthenticationFilter</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>web<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">WebUtils</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>constant<span class="token punctuation">.</span></span><span class="token class-name">ShiroConstant</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>core<span class="token punctuation">.</span>base<span class="token punctuation">.</span></span><span class="token class-name">BaseResponse</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>core<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span><span class="token class-name">JwtTokenManager</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">EmptyUtil</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">ServletRequest</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">ServletResponse</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @author clxmm
+ * @Description 自定义登录验证过滤器
+ * @create 2021-06-01 8:14 下午
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JwtAuthcFilter</span> <span class="token keyword">extends</span> <span class="token class-name">FormAuthenticationFilter</span> <span class="token punctuation">{</span>
+
+
+    <span class="token keyword">private</span> <span class="token class-name">JwtTokenManager</span> jwtTokenManager<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">JwtAuthcFilter</span><span class="token punctuation">(</span><span class="token class-name">JwtTokenManager</span> jwtTokenManager<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>jwtTokenManager <span class="token operator">=</span> jwtTokenManager<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment">/**
+     * @Description 是否允许访问
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">isAccessAllowed</span><span class="token punctuation">(</span><span class="token class-name">ServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">ServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">Object</span> mappedValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//判断当前请求头中是否带有jwtToken的字符串</span>
+        <span class="token class-name">String</span> jwtToken <span class="token operator">=</span> <span class="token class-name">WebUtils</span><span class="token punctuation">.</span><span class="token function">toHttp</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token string">&quot;jwtToken&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span>jwtToken<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">//没有没有：走原始校验</span>
+            <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">isAccessAllowed</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> mappedValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">//如果有：走jwt校验</span>
+        <span class="token keyword">boolean</span> verifyToken <span class="token operator">=</span> jwtTokenManager<span class="token punctuation">.</span><span class="token function">isVerifyToken</span><span class="token punctuation">(</span>jwtToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>verifyToken<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">isAccessAllowed</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> mappedValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment">/**
+     * @Description 访问拒绝时调用
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">onAccessDenied</span><span class="token punctuation">(</span><span class="token class-name">ServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">ServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">Object</span> mappedValue<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+        <span class="token comment">//判断当前请求头中是否带有jwtToken的字符串</span>
+        <span class="token class-name">String</span> jwtToken <span class="token operator">=</span> <span class="token class-name">WebUtils</span><span class="token punctuation">.</span><span class="token function">toHttp</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token string">&quot;jwtToken&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//如果有：返回json的应答</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">EmptyUtil</span><span class="token punctuation">.</span><span class="token function">isNullOrEmpty</span><span class="token punctuation">(</span>jwtToken<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token class-name">BaseResponse</span> baseResponse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BaseResponse</span><span class="token punctuation">(</span><span class="token class-name">ShiroConstant</span><span class="token punctuation">.</span>NO_LOGIN_CODE<span class="token punctuation">,</span><span class="token class-name">ShiroConstant</span><span class="token punctuation">.</span>NO_LOGIN_MESSAGE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span><span class="token string">&quot;UTF-8&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">&quot;application/json; charset=utf-8&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token class-name">JSONObject</span><span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>baseResponse<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//如果没有：走原始方式</span>
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onAccessDenied</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+<span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="【2】jwtpermsfilter"><a href="#【2】jwtpermsfilter" class="header-anchor">#</a> 【2】JwtPermsFilter</h3> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>filter</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>fastjson<span class="token punctuation">.</span></span><span class="token class-name">JSONObject</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>web<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>authz<span class="token punctuation">.</span></span><span class="token class-name">PermissionsAuthorizationFilter</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>web<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">WebUtils</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>constant<span class="token punctuation">.</span></span><span class="token class-name">ShiroConstant</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>core<span class="token punctuation">.</span>base<span class="token punctuation">.</span></span><span class="token class-name">BaseResponse</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">EmptyUtil</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">ServletRequest</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">ServletResponse</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @author clxmm
+ * @Description 自定义jwt的资源校验
+ * @create 2021-06-01 8:31 下午
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JwtPermsFilter</span>  <span class="token keyword">extends</span> <span class="token class-name">PermissionsAuthorizationFilter</span> <span class="token punctuation">{</span>
+
+
+    <span class="token comment">/**
+     * @Description 访问拒绝时调用
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">onAccessDenied</span><span class="token punctuation">(</span><span class="token class-name">ServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">ServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//判断当前请求头中是否带有jwtToken的字符串</span>
+        <span class="token class-name">String</span> jwtToken <span class="token operator">=</span> <span class="token class-name">WebUtils</span><span class="token punctuation">.</span><span class="token function">toHttp</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token string">&quot;jwtToken&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//如果有：返回json的应答</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">EmptyUtil</span><span class="token punctuation">.</span><span class="token function">isNullOrEmpty</span><span class="token punctuation">(</span>jwtToken<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token class-name">BaseResponse</span> baseResponse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BaseResponse</span><span class="token punctuation">(</span><span class="token class-name">ShiroConstant</span><span class="token punctuation">.</span>NO_AUTH_CODE<span class="token punctuation">,</span><span class="token class-name">ShiroConstant</span><span class="token punctuation">.</span>NO_AUTH_MESSAGE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span><span class="token string">&quot;UTF-8&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">&quot;application/json; charset=utf-8&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token class-name">JSONObject</span><span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>baseResponse<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//如果没有：走原始方式</span>
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onAccessDenied</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+<span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="【3】jwtrolesfilter"><a href="#【3】jwtrolesfilter" class="header-anchor">#</a> 【3】JwtRolesFilter</h3> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>filter</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>fastjson<span class="token punctuation">.</span></span><span class="token class-name">JSONObject</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>web<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>authz<span class="token punctuation">.</span></span><span class="token class-name">RolesAuthorizationFilter</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>web<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">WebUtils</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>constant<span class="token punctuation">.</span></span><span class="token class-name">ShiroConstant</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>core<span class="token punctuation">.</span>base<span class="token punctuation">.</span></span><span class="token class-name">BaseResponse</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>clxmm<span class="token punctuation">.</span>shiro<span class="token punctuation">.</span>utils<span class="token punctuation">.</span></span><span class="token class-name">EmptyUtil</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">ServletRequest</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">ServletResponse</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @author clxmm
+ * @Description 自定义jwt角色校验
+ * @create 2021-06-01 8:35 下午
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JwtRolesFilter</span> <span class="token keyword">extends</span> <span class="token class-name">RolesAuthorizationFilter</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * @Description 访问拒绝时调用
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">onAccessDenied</span><span class="token punctuation">(</span><span class="token class-name">ServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">ServletResponse</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//判断当前请求头中是否带有jwtToken的字符串</span>
+        <span class="token class-name">String</span> jwtToken <span class="token operator">=</span> <span class="token class-name">WebUtils</span><span class="token punctuation">.</span><span class="token function">toHttp</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token string">&quot;jwtToken&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//如果有：返回json的应答</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">EmptyUtil</span><span class="token punctuation">.</span><span class="token function">isNullOrEmpty</span><span class="token punctuation">(</span>jwtToken<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">BaseResponse</span> baseResponse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BaseResponse</span><span class="token punctuation">(</span><span class="token class-name">ShiroConstant</span><span class="token punctuation">.</span>NO_ROLE_CODE<span class="token punctuation">,</span><span class="token class-name">ShiroConstant</span><span class="token punctuation">.</span>NO_ROLE_MESSAGE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">setCharacterEncoding</span><span class="token punctuation">(</span><span class="token string">&quot;UTF-8&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">&quot;application/json; charset=utf-8&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token class-name">JSONObject</span><span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>baseResponse<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//如果没有：走原始方式</span>
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onAccessDenied</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+<span class="token punctuation">}</span>
+
+</code></pre></div><h2 id="_6、重写shiroconfig"><a href="#_6、重写shiroconfig" class="header-anchor">#</a> 6、重写ShiroConfig</h2> <p>1、ShiroSessionManager替换DefaultWebSessionManager</p> <p>2、生效过滤器</p> <div class="language-java extra-class"><pre class="language-java"><code>
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token annotation punctuation">@EnableConfigurationProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token class-name">ShiroRedisProperties</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ShiroConfig</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    <span class="token comment">// 替换 自定义的ShiroSessionManager 作用是加入对jwtToken的支持</span>
+    <span class="token comment">//会话管理器</span>
+    <span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span><span class="token string">&quot;sessionManager&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ShiroSessionManager</span> <span class="token function">sessionManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">ShiroSessionManager</span> sessionManager <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ShiroSessionManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 指定自定义的 redis 的</span>
+        sessionManager<span class="token punctuation">.</span><span class="token function">setSessionDAO</span><span class="token punctuation">(</span><span class="token function">redisSessionDao</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//关闭会话更新</span>
+        sessionManager<span class="token punctuation">.</span><span class="token function">setSessionValidationSchedulerEnabled</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//生效cookie</span>
+        sessionManager<span class="token punctuation">.</span><span class="token function">setSessionIdCookieEnabled</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//指定cookie的生成策略</span>
+        sessionManager<span class="token punctuation">.</span><span class="token function">setSessionIdCookie</span><span class="token punctuation">(</span><span class="token function">simpleCookie</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//指定全局会话超时时间</span>
+        sessionManager<span class="token punctuation">.</span><span class="token function">setGlobalSessionTimeout</span><span class="token punctuation">(</span><span class="token number">3600000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        <span class="token keyword">return</span> sessionManager<span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+
+        <span class="token comment">/**
+     * @Description 加载自定义过滤器
+     */</span>
+    <span class="token keyword">private</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Filter</span><span class="token punctuation">&gt;</span></span> <span class="token function">filters</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Filter</span><span class="token punctuation">&gt;</span></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;roles-or&quot;</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">RolesOrAuthorizationFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;kickedOut&quot;</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">KickedOutAuthorizationFilter</span><span class="token punctuation">(</span>redissonClient<span class="token punctuation">,</span> <span class="token function">redisSessionDao</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">sessionManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// </span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;jwt-authc&quot;</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">JwtAuthcFilter</span><span class="token punctuation">(</span>jwtTokenManager<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;jwt-perms&quot;</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">JwtPermsFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;jwt-roles&quot;</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">JwtRolesFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> map<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p><strong>配置文件</strong>
+authentication.properties</p> <div class="language-properties extra-class"><pre class="language-properties"><code><span class="token comment">#静态资源不过滤</span>
+<span class="token attr-name">/static/**</span><span class="token punctuation">=</span><span class="token attr-value">anon</span>
+<span class="token attr-name">/shiro/user/save**</span><span class="token punctuation">=</span><span class="token attr-value">anon</span>
+<span class="token comment">#登录链接不过滤</span>
+<span class="token attr-name">/login/**</span><span class="token punctuation">=</span><span class="token attr-value">anon</span>
+<span class="token comment">#/resource/**=roles-or[dev,SuperAdmin]</span>
+<span class="token comment">#前后端分离校验</span>
+<span class="token attr-name">/role/**</span> <span class="token punctuation">=</span><span class="token attr-value">jwt-roles[roles:initRoles]</span>
+<span class="token attr-name">/resource/**</span> <span class="token punctuation">=</span><span class="token attr-value">jwt-perms[role:listInitialize]</span>
+<span class="token comment">#其他链接是需要登录的</span>
+<span class="token attr-name">/**</span><span class="token punctuation">=</span><span class="token attr-value">kickedOut,authc</span>
+</code></pre></div><h2 id="_7、业务代码"><a href="#_7、业务代码" class="header-anchor">#</a> 7、业务代码</h2> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">/**
+     * @Description jwt的json登录方式
+     * @param loginVo
+     * @return
+     */</span>
+    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;login-jwt&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">BaseResponse</span> <span class="token class-name">LoginForJwt</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">LoginVo</span> loginVo<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> userService<span class="token punctuation">.</span><span class="token function">routeForJwt</span><span class="token punctuation">(</span>loginVo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><div class="language-java extra-class"><pre class="language-java"><code>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">BaseResponse</span> <span class="token function">routeForJwt</span><span class="token punctuation">(</span><span class="token class-name">LoginVo</span> loginVo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">String</span> jwtToken <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token class-name">SimpleToken</span> token <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleToken</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> loginVo<span class="token punctuation">.</span><span class="token function">getLoginName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> loginVo<span class="token punctuation">.</span><span class="token function">getPassWord</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Subject</span> subject <span class="token operator">=</span> <span class="token class-name">SecurityUtils</span><span class="token punctuation">.</span><span class="token function">getSubject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            subject<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">String</span> shiroSessionId <span class="token operator">=</span> <span class="token class-name">ShiroUserUtil</span><span class="token punctuation">.</span><span class="token function">getShiroSessionId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//登录后颁发的令牌</span>
+            <span class="token class-name">ShiroUser</span> shiroUser <span class="token operator">=</span> <span class="token class-name">ShiroUserUtil</span><span class="token punctuation">.</span><span class="token function">getShiroUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> claims <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            claims<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;shiroUser&quot;</span><span class="token punctuation">,</span> <span class="token class-name">JSONObject</span><span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>shiroUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            jwtToken <span class="token operator">=</span> <span class="token class-name"><span class="token namespace">jwtTokenManager<span class="token punctuation">.</span></span>IssuedToken</span><span class="token punctuation">(</span><span class="token string">&quot;system&quot;</span><span class="token punctuation">,</span> subject<span class="token punctuation">.</span><span class="token function">getSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>shiroSessionId<span class="token punctuation">,</span>claims<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">&quot;jwtToken&quot;</span><span class="token punctuation">,</span>jwtToken <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;jwtToken:{}&quot;</span><span class="token punctuation">,</span>map<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//创建缓存</span>
+<span class="token comment">//            this.loadAuthorityToCache();</span>
+
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">BaseResponse</span> baseResponse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BaseResponse</span><span class="token punctuation">(</span><span class="token class-name">ShiroConstant</span><span class="token punctuation">.</span>LOGIN_FAILURE_CODE<span class="token punctuation">,</span> <span class="token class-name">ShiroConstant</span><span class="token punctuation">.</span>LOGIN_FAILURE_MESSAGE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> baseResponse<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token class-name">BaseResponse</span> baseResponse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BaseResponse</span><span class="token punctuation">(</span><span class="token class-name">ShiroConstant</span><span class="token punctuation">.</span>LOGIN_SUCCESS_CODE<span class="token punctuation">,</span><span class="token class-name">ShiroConstant</span><span class="token punctuation">.</span>LOGIN_SUCCESS_MESSAGE<span class="token punctuation">,</span>jwtToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> baseResponse<span class="token punctuation">;</span>
+
+
+
+    <span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/java-about/06app/01shiro/05.html" class="prev">
+        05 实现分布式会话SessionManager
+      </a></span> <span class="next"><a href="/java-about/06app/01shiro/07.html">
+        07 分布式统一权限系统
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.8b7a8431.js" defer></script><script src="/assets/js/2.5286b244.js" defer></script><script src="/assets/js/30.9a5741cb.js" defer></script>
+  </body>
+</html>

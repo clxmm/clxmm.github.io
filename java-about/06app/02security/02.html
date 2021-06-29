@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>02 Spring Security快速上手 | clxmm</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="clxmm">
+    
+    <link rel="preload" href="/assets/css/0.styles.35bcedcf.css" as="style"><link rel="preload" href="/assets/js/app.8b7a8431.js" as="script"><link rel="preload" href="/assets/js/2.5286b244.js" as="script"><link rel="preload" href="/assets/js/33.c60594e0.js" as="script"><link rel="prefetch" href="/assets/js/10.1770591f.js"><link rel="prefetch" href="/assets/js/11.b04e85b9.js"><link rel="prefetch" href="/assets/js/12.384cb7e1.js"><link rel="prefetch" href="/assets/js/13.d2118b2a.js"><link rel="prefetch" href="/assets/js/14.e855382e.js"><link rel="prefetch" href="/assets/js/15.8b0b66f1.js"><link rel="prefetch" href="/assets/js/16.5397e314.js"><link rel="prefetch" href="/assets/js/17.77748871.js"><link rel="prefetch" href="/assets/js/18.dd16cfc0.js"><link rel="prefetch" href="/assets/js/19.05b49fdf.js"><link rel="prefetch" href="/assets/js/20.46468263.js"><link rel="prefetch" href="/assets/js/21.a5a9753a.js"><link rel="prefetch" href="/assets/js/22.0e2efc5d.js"><link rel="prefetch" href="/assets/js/23.c7b4431f.js"><link rel="prefetch" href="/assets/js/24.9038389c.js"><link rel="prefetch" href="/assets/js/25.5c30b3a0.js"><link rel="prefetch" href="/assets/js/26.7e52d09f.js"><link rel="prefetch" href="/assets/js/27.7961fda8.js"><link rel="prefetch" href="/assets/js/28.d2f54eaa.js"><link rel="prefetch" href="/assets/js/29.53911d87.js"><link rel="prefetch" href="/assets/js/3.236de3dc.js"><link rel="prefetch" href="/assets/js/30.9a5741cb.js"><link rel="prefetch" href="/assets/js/31.1825bee7.js"><link rel="prefetch" href="/assets/js/32.52a6adba.js"><link rel="prefetch" href="/assets/js/34.a80e1d9f.js"><link rel="prefetch" href="/assets/js/35.de166674.js"><link rel="prefetch" href="/assets/js/36.9a20ebc0.js"><link rel="prefetch" href="/assets/js/37.c4d8ab43.js"><link rel="prefetch" href="/assets/js/38.01394106.js"><link rel="prefetch" href="/assets/js/39.178ff82b.js"><link rel="prefetch" href="/assets/js/4.9b1d0096.js"><link rel="prefetch" href="/assets/js/40.7df74b8c.js"><link rel="prefetch" href="/assets/js/41.60838fa1.js"><link rel="prefetch" href="/assets/js/42.c87c62f7.js"><link rel="prefetch" href="/assets/js/43.29847e8c.js"><link rel="prefetch" href="/assets/js/44.95d21ee7.js"><link rel="prefetch" href="/assets/js/45.363fdf1b.js"><link rel="prefetch" href="/assets/js/46.bc9f53f0.js"><link rel="prefetch" href="/assets/js/47.71275c14.js"><link rel="prefetch" href="/assets/js/48.832dbe72.js"><link rel="prefetch" href="/assets/js/49.ca2fc950.js"><link rel="prefetch" href="/assets/js/5.7dc46c13.js"><link rel="prefetch" href="/assets/js/50.76e582a6.js"><link rel="prefetch" href="/assets/js/51.1f205e15.js"><link rel="prefetch" href="/assets/js/52.3c7d8d04.js"><link rel="prefetch" href="/assets/js/53.4d107951.js"><link rel="prefetch" href="/assets/js/54.e2ffb9a7.js"><link rel="prefetch" href="/assets/js/55.ac63ae54.js"><link rel="prefetch" href="/assets/js/56.c3c9a191.js"><link rel="prefetch" href="/assets/js/57.e31945e7.js"><link rel="prefetch" href="/assets/js/58.dd8bb1c9.js"><link rel="prefetch" href="/assets/js/59.eed6432f.js"><link rel="prefetch" href="/assets/js/6.78397fcc.js"><link rel="prefetch" href="/assets/js/60.cfa47d83.js"><link rel="prefetch" href="/assets/js/61.78c9f611.js"><link rel="prefetch" href="/assets/js/62.1572c47a.js"><link rel="prefetch" href="/assets/js/63.a02debc8.js"><link rel="prefetch" href="/assets/js/64.984e23c5.js"><link rel="prefetch" href="/assets/js/65.31da08bf.js"><link rel="prefetch" href="/assets/js/66.e0390271.js"><link rel="prefetch" href="/assets/js/67.baa297f1.js"><link rel="prefetch" href="/assets/js/68.f36c5e76.js"><link rel="prefetch" href="/assets/js/69.a6ef2a7b.js"><link rel="prefetch" href="/assets/js/7.b51c7eac.js"><link rel="prefetch" href="/assets/js/8.58739c74.js"><link rel="prefetch" href="/assets/js/9.15fe2da7.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.35bcedcf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">clxmm</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/01shiro/01.html" class="nav-link">
+  shiro
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/02security/01.html" class="nav-link">
+  security
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/03javaee/01.html" class="nav-link">
+  javaee
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web" class="dropdown-title"><span class="title">web</span> <span class="arrow down"></span></button> <button type="button" aria-label="web" class="mobile-dropdown-title"><span class="title">web</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/web/01web/01web01.html" class="nav-link">
+  web基础
+</a></li><li class="dropdown-item"><!----> <a href="/web/02js/01js.html" class="nav-link">
+  js基础
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java 基础" class="dropdown-title"><span class="title">java 基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="java 基础" class="mobile-dropdown-title"><span class="title">java 基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/07javabase/01flux/01flux.html" class="nav-link">
+  java 基础
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/07javabase/02base/01.html" class="nav-link">
+  java 基础1
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/java-log/01log.html" class="nav-link">
+  java日志
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/04java-about/01jwt.html" class="nav-link">
+  java杂七杂八
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/03java/01synchronized.html" class="nav-link">
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/01shiro/01.html" class="nav-link">
+  shiro
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/02security/01.html" class="nav-link">
+  security
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/06app/03javaee/01.html" class="nav-link">
+  javaee
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="springCloud相关" class="dropdown-title"><span class="title">springCloud相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="springCloud相关" class="mobile-dropdown-title"><span class="title">springCloud相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/05spring-cloud/01gateway.html" class="nav-link">
+  springCloud相关
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="web" class="dropdown-title"><span class="title">web</span> <span class="arrow down"></span></button> <button type="button" aria-label="web" class="mobile-dropdown-title"><span class="title">web</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/web/01web/01web01.html" class="nav-link">
+  web基础
+</a></li><li class="dropdown-item"><!----> <a href="/web/02js/01js.html" class="nav-link">
+  js基础
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java 基础" class="dropdown-title"><span class="title">java 基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="java 基础" class="mobile-dropdown-title"><span class="title">java 基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/java-about/07javabase/01flux/01flux.html" class="nav-link">
+  java 基础
+</a></li><li class="dropdown-item"><!----> <a href="/java-about/07javabase/02base/01.html" class="nav-link">
+  java 基础1
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>security</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java-about/06app/02security/01.html" class="sidebar-link">01  Spring Security OAuth2.0认证授权</a></li><li><a href="/java-about/06app/02security/02.html" aria-current="page" class="active sidebar-link">02 Spring Security快速上手</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/06app/02security/02.html#_3-spring-security快速上手" class="sidebar-link">3.Spring Security快速上手</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java-about/06app/02security/02.html#_3-1-spring-security介绍" class="sidebar-link">3.1 Spring Security介绍</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/02security/02.html#_3-2-创建工程" class="sidebar-link">3.2 创建工程</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/02security/02.html#_3-3-认证" class="sidebar-link">3.3 认证</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/02security/02.html#_3-4-授权" class="sidebar-link">3.4 授权</a></li><li class="sidebar-sub-header"><a href="/java-about/06app/02security/02.html#_3-5-小结" class="sidebar-link">3.5 小结</a></li></ul></li></ul></li><li><a href="/java-about/06app/02security/03.html" class="sidebar-link">04 Spring Security 应用详解</a></li><li><a href="/java-about/06app/02security/04.html" class="sidebar-link">04 Spring Security 应用详解</a></li><li><a href="/java-about/06app/02security/05.html" class="sidebar-link">04 OAuth2.0</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_3-spring-security快速上手"><a href="#_3-spring-security快速上手" class="header-anchor">#</a> 3.Spring Security快速上手</h2> <h3 id="_3-1-spring-security介绍"><a href="#_3-1-spring-security介绍" class="header-anchor">#</a> 3.1 Spring Security介绍</h3> <p>Spring Security是一个能够为基于Spring的企业应用系统提供声明式的安全访问控制解决方案的安全框架。由于它 是Spring生态系统中的一员，因此它伴随着整Spring生态系统不断修正、升级，在spring boot项目中加入spring security更是十分简单，使用Spring Security 减少了为企业系统安全控制编写大量重复代码的工作。</p> <h3 id="_3-2-创建工程"><a href="#_3-2-创建工程" class="header-anchor">#</a> 3.2 创建工程</h3> <h4 id="_3-2-1-创建maven工程"><a href="#_3-2-1-创建maven工程" class="header-anchor">#</a> 3.2.1 创建maven工程</h4> <p>创建maven工程 security02-spring-security</p> <p><strong>2)引入以下依赖:</strong>
+在security-springmvc的基础上增加spring-security的依赖:</p> <div class="language-pom extra-class"><pre class="language-text"><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+    &lt;artifactId&gt;spring‐security‐web&lt;/artifactId&gt;
+    &lt;version&gt;5.1.4.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+    &lt;artifactId&gt;spring‐security‐config&lt;/artifactId&gt;
+    &lt;version&gt;5.1.4.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></div><h4 id="_3-2-2-spring容器配置"><a href="#_3-2-2-spring容器配置" class="header-anchor">#</a> 3.2.2 Spring容器配置</h4> <p>同security-springmvc.</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@ComponentScan</span><span class="token punctuation">(</span>basePackages <span class="token operator">=</span> <span class="token string">&quot;org.clxmm.security.springmvc&quot;</span><span class="token punctuation">,</span>
+        excludeFilters <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token annotation punctuation">@ComponentScan.Filter</span><span class="token punctuation">(</span>type <span class="token operator">=</span> <span class="token class-name">FilterType</span><span class="token punctuation">.</span>ANNOTATION<span class="token punctuation">,</span> value <span class="token operator">=</span>
+                <span class="token class-name">Controller</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ApplicationConfig</span> <span class="token punctuation">{</span>
+    <span class="token comment">//在此配置除了Controller的其它bean，比如:数据库链接池、事务管理器、业务bean等。</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-2-3-servlet-context配置"><a href="#_3-2-3-servlet-context配置" class="header-anchor">#</a> 3.2.3 Servlet Context配置</h4> <p>同security-springmvc.</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@EnableWebMvc</span>
+<span class="token annotation punctuation">@ComponentScan</span><span class="token punctuation">(</span>basePackages <span class="token operator">=</span> <span class="token string">&quot;org.clxmm.security.springmvc&quot;</span><span class="token punctuation">,</span>
+        includeFilters <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token annotation punctuation">@ComponentScan.Filter</span><span class="token punctuation">(</span>type <span class="token operator">=</span> <span class="token class-name">FilterType</span><span class="token punctuation">.</span>ANNOTATION<span class="token punctuation">,</span> value <span class="token operator">=</span>
+                <span class="token class-name">Controller</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WebConfig</span> <span class="token keyword">implements</span> <span class="token class-name">WebMvcConfigurer</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">//视频解析器</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">InternalResourceViewResolver</span> <span class="token function">viewResolver</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">InternalResourceViewResolver</span> viewResolver <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">InternalResourceViewResolver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        viewResolver<span class="token punctuation">.</span><span class="token function">setPrefix</span><span class="token punctuation">(</span><span class="token string">&quot;/WEB‐INF/views/&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        viewResolver<span class="token punctuation">.</span><span class="token function">setSuffix</span><span class="token punctuation">(</span><span class="token string">&quot;.jsp&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> viewResolver<span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-2-4-加载-spring容器"><a href="#_3-2-4-加载-spring容器" class="header-anchor">#</a> 3.2.4 加载 Spring容器</h4> <p>在init包下定义Spring容器初始化类SpringApplicationInitializer，此类实现WebApplicationInitializer接口，Spring容器启动时加载WebApplicationInitializer接口的所有实现类。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringApplicationInitializer</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractAnnotationConfigDispatcherServletInitializer</span> <span class="token punctuation">{</span>
+
+
+    <span class="token comment">// spring 容器 加载 applicationContext</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getRootConfigClasses</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Class</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token class-name">ApplicationConfig</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// servletContext   加载springmvc</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getServletConfigClasses</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Class</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token class-name">WebConfig</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// url-mapping</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getServletMappings</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token string">&quot;/&quot;</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_3-3-认证"><a href="#_3-3-认证" class="header-anchor">#</a> 3.3 认证</h3> <h4 id="_3-3-1-认证页面"><a href="#_3-3-1-认证页面" class="header-anchor">#</a> 3.3.1 认证页面</h4> <p>springSecurity默认提供认证页面，我们先用这个</p> <h4 id="_3-3-2-安全配置"><a href="#_3-3-2-安全配置" class="header-anchor">#</a> 3.3.2.安全配置</h4> <p>spring security提供了用户名密码登录、退出、会话管理等认证功能，只需要配置即可使用。</p> <ol><li>在config包下定义WebSecurityConfig，安全配置的内容包括:用户信息、密码编码器、安全拦截机制。</li></ol> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@EnableWebSecurity</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WebSecurityConfig</span> <span class="token keyword">extends</span> <span class="token class-name">WebSecurityConfigurerAdapter</span> <span class="token punctuation">{</span>
+
+
+    <span class="token comment">// 定义用户信息服务 （查询用户信息）</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">UserDetailsService</span> <span class="token function">userDetailsService</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">InMemoryUserDetailsManager</span> inMemoryUserDetailsManager <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">InMemoryUserDetailsManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        inMemoryUserDetailsManager<span class="token punctuation">.</span><span class="token function">createUser</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token function">withUsername</span><span class="token punctuation">(</span><span class="token string">&quot;zs&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">password</span><span class="token punctuation">(</span><span class="token string">&quot;123&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authorities</span><span class="token punctuation">(</span><span class="token string">&quot;p1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        inMemoryUserDetailsManager<span class="token punctuation">.</span><span class="token function">createUser</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token function">withUsername</span><span class="token punctuation">(</span><span class="token string">&quot;ls&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">password</span><span class="token punctuation">(</span><span class="token string">&quot;456&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authorities</span><span class="token punctuation">(</span><span class="token string">&quot;p2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> inMemoryUserDetailsManager<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment">//密码编码器</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">PasswordEncoder</span> <span class="token function">passwordEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">return</span> <span class="token class-name">NoOpPasswordEncoder</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment">// 安全拦截机制</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">HttpSecurity</span> http<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+
+        http<span class="token punctuation">.</span><span class="token function">authorizeRequests</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token comment">// /r/** 的请求需要认证</span>
+                <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">&quot;/r/r1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasAnyAuthority</span><span class="token punctuation">(</span><span class="token string">&quot;p1&quot;</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">&quot;/r/r2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasAnyAuthority</span><span class="token punctuation">(</span><span class="token string">&quot;p2&quot;</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">&quot;/r/**&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token comment">// 其他的都通过</span>
+                <span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token comment">// 允许表单登陆</span>
+                <span class="token punctuation">.</span><span class="token function">formLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token comment">// 自定义登陆成功的页面地址</span>
+                <span class="token punctuation">.</span><span class="token function">successForwardUrl</span><span class="token punctuation">(</span><span class="token string">&quot;/login‐success&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在userDetailsService()方法中，我们返回了一个UserDetailsService给spring容器，Spring Security会使用它来 获取用户信息。我们暂时使用InMemoryUserDetailsManager实现类，并在其中分别创建了zs、ls两个用 户，并设置密码和权限。</p> <p>而在configure()中，我们通过HttpSecurity设置了安全拦截规则，其中包含了以下内容:</p> <ul><li>url匹配/r/**的资源，经过认证后才能访问。</li> <li>其他url完全开放。</li> <li>支持form表单认证，认证成功后转向/login-success。</li></ul> <p>关于HttpSecurity的配置清单请参考附录 HttpSecurity。</p> <ol start="2"><li>加载 WebSecurityConfig</li></ol> <p>修改SpringApplicationInitializer的getRootConfigClasses()方法，添加WebSecurityConfig.class:</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">// spring 容器 加载 applicationContext</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getRootConfigClasses</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Class</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token class-name">ApplicationConfig</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token class-name">WebSecurityConfig</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-3-2-spring-security初始化"><a href="#_3-3-2-spring-security初始化" class="header-anchor">#</a> 3.3.2.Spring Security初始化</h4> <p>Spring Security初始化，这里有两种情况</p> <ul><li>若当前环境没有使用Spring或Spring MVC，则需要将 WebSecurityConfig(Spring Security配置类) 传入超类，以确保获取配置，并创建spring context。</li> <li>相反，若当前环境已经使用spring，我们应该在现有的springContext中注册Spring Security(上一步已经做将WebSecurityConfig加载至rootcontext)，此方法可以什么都不做。在init包下定义SpringSecurityApplicationInitializer:</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringSecurityApplicationInitializer</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractSecurityWebApplicationInitializer</span> <span class="token punctuation">{</span>
+
+
+    <span class="token keyword">public</span> <span class="token class-name">SpringSecurityApplicationInitializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 若当前环境没有使用Spring或Spring MVC，则需要将 WebSecurityConfig(Spring Security配置类) 传入超</span>
+        <span class="token comment">//类，以确保获取配置，并创建spring context。</span>
+        <span class="token comment">//super(WebSecurityConfig.class);</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-2-3-默认根路径请求"><a href="#_3-2-3-默认根路径请求" class="header-anchor">#</a> 3.2.3.默认根路径请求</h4> <p>在WebConfig.java中添加默认请求根路径跳转到/login，此url为spring security提供:</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addViewControllers</span><span class="token punctuation">(</span><span class="token class-name">ViewControllerRegistry</span> registry<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 在WebConfig.java中添加默认请求根路径跳转到/login，此url为spring security提供:</span>
+        registry<span class="token punctuation">.</span><span class="token function">addViewController</span><span class="token punctuation">(</span><span class="token string">&quot;/&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setViewName</span><span class="token punctuation">(</span><span class="token string">&quot;redirect:login&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>spring security默认提供的登录页面。</p> <h4 id="_3-2-4-认证成功页面"><a href="#_3-2-4-认证成功页面" class="header-anchor">#</a> 3.2.4.认证成功页面</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token operator">/</span>配置安全拦截机制
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">HttpSecurity</span> http<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+      http
+              <span class="token punctuation">.</span><span class="token function">authorizeRequests</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">&quot;/r/**&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> 
+<span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> 
+<span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">formLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">successForwardUrl</span><span class="token punctuation">(</span><span class="token string">&quot;/login‐success&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>spring security支持form表单认证，认证成功后转向/login-success。</p> <p>在LoginController中定义/login-success:</p> <div class="language-java extra-class"><pre class="language-java"><code>   <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/login‐success&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">loginSuccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+    <span class="token keyword">return</span> <span class="token string">&quot; 登录成功&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_3-2-5-测试"><a href="#_3-2-5-测试" class="header-anchor">#</a> 3.2.5 测试</h4> <p>http://localhost:8080/security02-spring-security/login</p> <h3 id="_3-4-授权"><a href="#_3-4-授权" class="header-anchor">#</a> 3.4 授权</h3> <p>实现授权需要对用户的访问进行拦截校验，校验用户的权限是否可以操作指定的资源，Spring Security默认提供授权实现方法。
+在LoginController添加/r/r1或/r/r2</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">/**
+     * 测试资源1 * @return
+     */</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/r/r1&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">r1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot; resource 1&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 测试资源2 * @return
+     */</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;/r/r2&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">r2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot; resource 2&quot;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>在安全配置类WebSecurityConfig.java中配置授权规则:</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">&quot;/r/r1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasAuthority</span><span class="token punctuation">(</span><span class="token string">&quot;p1&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">&quot;/r/r2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasAuthority</span><span class="token punctuation">(</span><span class="token string">&quot;p2&quot;</span><span class="token punctuation">)</span>
+</code></pre></div><p>.antMatchers(&quot;/r/r1&quot;).hasAuthority(&quot;p1&quot;)表示:访问/r/r1资源的 url需要拥有p1权限。</p> <p>.antMatchers(&quot;/r/r2&quot;).hasAuthority(&quot;p2&quot;)表示:访问/r/r2资源的 url需要拥有p2权限。</p> <p>完整的WebSecurityConfig方法如下:</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">// 安全拦截机制</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">HttpSecurity</span> http<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+
+        http<span class="token punctuation">.</span><span class="token function">authorizeRequests</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token comment">// /r/** 的请求需要认证</span>
+                <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">&quot;/r/r1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasAnyAuthority</span><span class="token punctuation">(</span><span class="token string">&quot;p1&quot;</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">&quot;/r/r2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasAnyAuthority</span><span class="token punctuation">(</span><span class="token string">&quot;p2&quot;</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">antMatchers</span><span class="token punctuation">(</span><span class="token string">&quot;/r/**&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">authenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token comment">// 其他的都通过</span>
+                <span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">permitAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token comment">// 允许表单登陆</span>
+                <span class="token punctuation">.</span><span class="token function">formLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token comment">// 自定义登陆成功的页面地址</span>
+                <span class="token punctuation">.</span><span class="token function">successForwardUrl</span><span class="token punctuation">(</span><span class="token string">&quot;/login‐success&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+</code></pre></div><h3 id="_3-5-小结"><a href="#_3-5-小结" class="header-anchor">#</a> 3.5 小结</h3> <p>通过快速上手，咱们使用Spring Security实现了认证和授权，Spring Security提供了基于账号和密码的认证方式，通过安全配置即可实现请求拦截，授权功能，Spring Security能完成的不仅仅是这些。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/java-about/06app/02security/01.html" class="prev">
+        01  Spring Security OAuth2.0认证授权
+      </a></span> <span class="next"><a href="/java-about/06app/02security/03.html">
+        04 Spring Security 应用详解
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.8b7a8431.js" defer></script><script src="/assets/js/2.5286b244.js" defer></script><script src="/assets/js/33.c60594e0.js" defer></script>
+  </body>
+</html>
